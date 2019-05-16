@@ -1,0 +1,11 @@
+<%= form_with scope: :user, url: sessions_path, local: true do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password, 'Senha' %>
+  <%= f.text_field :password %>
+  <%= f.submit 'Entrar' %>
+<% end %>
+<%= link_to 'Login com Senado', cas_senado_path, method: :post %> <br>
+<%= link_to 'Login com Interlegis', interlegis_page_path %><br>
+<%= link_to 'Login com Google', auth_at_provider_path(:provider => :google) %> <br>
+<%= link_to 'Login com Facebook', auth_at_provider_path(:provider => :facebook) %>

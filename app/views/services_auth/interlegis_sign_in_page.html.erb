@@ -1,0 +1,7 @@
+<%= form_with scope: :user, url: interlegis_path, local: true do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :password, 'Senha' %>
+  <%= f.text_field :password %>
+  <%= f.submit 'Entrar' %>
+<% end %>
