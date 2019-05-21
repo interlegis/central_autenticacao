@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: login_centralizado_interlegis_production
-  username: login_centralizado_interlegis
-  password: <%= ENV['LOGIN_CENTRALIZADO_INTERLEGIS_DATABASE_PASSWORD'] %>
+  host: <%= ENV['CENTRAL_AUTENTICACAO_DB_HOST'] %>
+  database: <%= ENV['CENTRAL_AUTENTICACAO_DB_NAME'] %>
+  username: <%= ENV['CENTRAL_AUTENTICACAO_DB_USER'] %>
+  password: <%= ENV['CENTRAL_AUTENTICACAO_DB_PASS'] %>
