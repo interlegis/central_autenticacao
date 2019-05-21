@@ -114,9 +114,9 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
-  config.facebook.key = ENV['LOGIN_INTERLEGIS_Facebook_key']
-  config.facebook.secret = ENV['LOGIN_INTERLEGIS_Facebook_secret']
-  config.facebook.callback_url = ENV['LOGIN_INTERLEGIS_URL'].present? ? ENV['LOGIN_INTERLEGIS_URL'] : "http://localhost:3000/oauth/callback" + "?provider=facebook"
+  config.facebook.key = ENV['CENTRAL_AUTENTICACAO_Facebook_key']
+  config.facebook.secret = ENV['CENTRAL_AUTENTICACAO_Facebook_secret']
+  config.facebook.callback_url = ENV['CENTRAL_AUTENTICACAO_URL'].present? ? ENV['CENTRAL_AUTENTICACAO_URL'] : "http://localhost:3000/oauth/callback" + "?provider=facebook"
   config.facebook.user_info_path = "me?fields=email,name"
   config.facebook.user_info_mapping = {:uid => "id", :email => "email", :name => 'name'}
   config.facebook.access_permissions = ["email"]
@@ -151,9 +151,9 @@ Rails.application.config.sorcery.configure do |config|
   # config.auth0.callback_url = "https://0.0.0.0:3000/oauth/callback?provider=auth0"
   # config.auth0.site = "https://example.auth0.com"
   #
-  config.google.key = ENV['LOGIN_INTERLEGIS_Google_key']
-  config.google.secret = ENV['LOGIN_INTERLEGIS_Google_secret']
-  config.google.callback_url = ENV['LOGIN_INTERLEGIS_URL'].present? ? ENV['LOGIN_INTERLEGIS_URL'] : "http://localhost:3000/oauth/callback" + "?provider=google"
+  config.google.key = ENV['CENTRAL_AUTENTICACAO_Google_key']
+  config.google.secret = ENV['CENTRAL_AUTENTICACAO_Google_secret']
+  config.google.callback_url = ENV['CENTRAL_AUTENTICACAO_URL'].present? ? ENV['CENTRAL_AUTENTICACAO_URL'] : "http://localhost:3000/oauth/callback" + "?provider=google"
   config.google.user_info_mapping = {:uid => "id", :email => "email", :name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
