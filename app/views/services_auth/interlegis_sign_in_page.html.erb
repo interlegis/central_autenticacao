@@ -1,7 +1,10 @@
+<h1>Login Interlegis</h1>
+
 <%= form_with scope: :user, url: interlegis_path, local: true do |f| %>
   <%= f.label :email %>
   <%= f.text_field :email %>
   <%= f.label :password, 'Senha' %>
-  <%= f.text_field :password %>
+  <%= f.password_field :password %> <br>
   <%= f.submit 'Entrar' %>
+  <%= link_to 'Voltar',  new_session_path, style: 'margin-left: 2vw;' %>
 <% end %>

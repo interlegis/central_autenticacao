@@ -9,7 +9,7 @@ class ServicesAuthController < ApplicationController
     @retorno = session[:login_back_url]
     session[:login_back_url] = user_path
     if @user = login_from(provider)
-      redirect_to @retorno, :notice => "Logged in from #{provider.titleize}!"
+      redirect_to @retorno || user_path, :notice => "Logged in from #{provider.titleize}!"
     else
       @user = build_from(provider)
       existent_user = User.find_by(email: @user.email)
@@ -23,7 +23,7 @@ class ServicesAuthController < ApplicationController
       auto_login(@user)
       #session[:login_back_url] = @retorno
       #redirect_to adicionar_dados_path, :notice => "Logged in from #{provider.titleize}!"
-      redirect_to @retorno
+      redirect_to @retorno || user_path
     end
   end
 
@@ -53,7 +53,7 @@ class ServicesAuthController < ApplicationController
       end
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path
-      redirect_to @retorno
+      redirect_to @retorno || user_path
     else
       redirect_to root_path
     end
@@ -70,7 +70,7 @@ class ServicesAuthController < ApplicationController
       end
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path
-      redirect_to @retorno
+      redirect_to @retorno || user_path
     else
       render status: 401, json: {'authenticate': true}
     end

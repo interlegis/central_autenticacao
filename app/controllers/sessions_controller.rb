@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if login(params[:user][:email], params[:user][:password])
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path
-      redirect_to @retorno
+      redirect_to @retorno || user_path
     else
       render 'new'
     end

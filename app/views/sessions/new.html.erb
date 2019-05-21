@@ -1,9 +1,12 @@
+<h1>Login Centralizado</h1>
+
 <%= form_with scope: :user, url: sessions_path, local: true do |f| %>
   <%= f.label :email %>
   <%= f.text_field :email %>
   <%= f.label :password, 'Senha' %>
-  <%= f.text_field :password %>
+  <%= f.password_field :password %><br>
   <%= f.submit 'Entrar' %>
+  <%= link_to 'Registrar', new_user_path, style: 'margin-left: 2vw;' %>
 <% end %>
 <%= link_to 'Login com Senado', cas_senado_path, method: :post %> <br>
 <%= link_to 'Login com Interlegis', interlegis_page_path %><br>

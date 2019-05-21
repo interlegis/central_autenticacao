@@ -116,7 +116,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.facebook.key = ENV['LOGIN_INTERLEGIS_Facebook_key']
   config.facebook.secret = ENV['LOGIN_INTERLEGIS_Facebook_secret']
-  config.facebook.callback_url = "https://escolamodelows.interlegis.leg.br/oauth/callback?provider=facebook"
+  config.facebook.callback_url = ENV['LOGIN_INTERLEGIS_URL'].present? ? ENV['LOGIN_INTERLEGIS_URL'] : "http://localhost:3000/oauth/callback" + "?provider=facebook"
   config.facebook.user_info_path = "me?fields=email,name"
   config.facebook.user_info_mapping = {:uid => "id", :email => "email", :name => 'name'}
   config.facebook.access_permissions = ["email"]
@@ -153,8 +153,8 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.google.key = ENV['LOGIN_INTERLEGIS_Google_key']
   config.google.secret = ENV['LOGIN_INTERLEGIS_Google_secret']
-  config.google.callback_url = "https://escolamodelows.interlegis.leg.br/oauth/callback?provider=google"
-  config.google.user_info_mapping = {:uid => "id", :email => "email", :first_name => "name"}
+  config.google.callback_url = ENV['LOGIN_INTERLEGIS_URL'].present? ? ENV['LOGIN_INTERLEGIS_URL'] : "http://localhost:3000/oauth/callback" + "?provider=google"
+  config.google.user_info_mapping = {:uid => "id", :email => "email", :name => "name"}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
