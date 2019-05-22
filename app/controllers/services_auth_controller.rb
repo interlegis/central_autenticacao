@@ -48,8 +48,11 @@ class ServicesAuthController < ApplicationController
       if user.present?
         auto_login(user)
       else
-        user = User.create(email: params[:user][:email])
-        auto_login(user)
+        user = User.new(email: params[:user][:email])
+        user.skip_password = true
+        if user.save
+          auto_login(user)
+        end
       end
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path
@@ -65,8 +68,11 @@ class ServicesAuthController < ApplicationController
       if user.present?
         auto_login(user)
       else
-        user = User.create(email: params[:user][:email]+'@senado.leg.br')
-        auto_login(user)
+        user = User.new(email: params[:user][:email])
+        user.skip_password = true
+        if user.save
+          auto_login(user)
+        end
       end
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   get '/interlegis' => 'services_auth#interlegis_sign_in_page', :as => 'interlegis_page'
   post '/interlegis' => 'services_auth#interlegis_sign_in', :as => 'interlegis'
-  post '/senado' => 'services_auth#cas_sign_in', :as => 'cas_senado'
+  get '/senado' => 'services_auth#cas_sign_in', :as => 'cas_senado'
   get '/login' => 'sessions#new', :as => :login
   delete 'logout' => 'sessions#destroy', :as => :logout
   resources :users, only: [:new, :create]

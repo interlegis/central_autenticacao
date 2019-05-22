@@ -8,7 +8,7 @@
   <%= f.submit 'Entrar' %>
   <%= link_to 'Registrar', new_user_path, style: 'margin-left: 2vw;' %>
 <% end %>
-<%= link_to 'Login com Senado', cas_senado_path, method: :post %> <br>
+<%= link_to 'Login com Senado', cas_senado_path %> <br>
 <%= link_to 'Login com Interlegis', interlegis_page_path %><br>
 <%= link_to 'Login com Google', auth_at_provider_path(:provider => :google) %> <br>
 <%= link_to 'Login com Facebook', auth_at_provider_path(:provider => :facebook) %>
