@@ -68,7 +68,7 @@ class ServicesAuthController < ApplicationController
       if user.present?
         auto_login(user)
       else
-        user = User.new(email: params[:user][:email])
+        user = User.new(email: session['cas']['user'])
         user.skip_password = true
         if user.save
           auto_login(user)
