@@ -44,7 +44,7 @@ class ServicesAuthController < ApplicationController
       logged = false
     end
     if (logged)
-      user = User.find_by_email(params[:user][:email])
+      user = User.find_by_email(params[:user][:email]+'@interlegis.leg.br')
       if user.present?
         auto_login(user)
       else
@@ -68,7 +68,7 @@ class ServicesAuthController < ApplicationController
       if user.present?
         auto_login(user)
       else
-        user = User.new(email: session['cas']['user'])
+        user = User.new(email: session['cas']['user']+'@senado.leg.br')
         user.skip_password = true
         if user.save
           auto_login(user)
