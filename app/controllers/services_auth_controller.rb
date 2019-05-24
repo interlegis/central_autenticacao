@@ -44,7 +44,7 @@ class ServicesAuthController < ApplicationController
       logged = false
     end
     if (logged)
-      user = User.find_by_email(params[:user][:email]+'@interlegis.leg.br')
+      user = User.find_by_email(params[:user][:email])
       if user.present?
         auto_login(user)
       else
