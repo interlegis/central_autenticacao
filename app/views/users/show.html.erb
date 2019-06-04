@@ -1,2 +1,8 @@
 <p><%= @user.email %></p>
 <%= link_to 'Sair', logout_path(@user.id), method: 'delete' %>
+
+<h2>Vincular Contas</h2>
+<%= link_to 'Vincular Senado', cas_senado_path %> <br>
+<%= link_to 'Vincular Interlegis', interlegis_page_path %><br>
+<%= link_to 'Vincular Google', auth_at_provider_path(:provider => :google) %> <br>
+<%= link_to 'Vincular Facebook', auth_at_provider_path(:provider => :facebook) %>

@@ -41,9 +41,6 @@ class ServicesAuthController < ApplicationController
   end
 
   def interlegis_sign_in_page
-    if current_user
-      redirect_to user_path
-    end
   end
 
   def interlegis_sign_in
@@ -77,7 +74,7 @@ class ServicesAuthController < ApplicationController
         redirect_to @retorno || user_path
       end
     else
-      redirect_to login_path
+      redirect_to interlegis_page_path
     end
   end
 
@@ -108,8 +105,8 @@ class ServicesAuthController < ApplicationController
   private
   def vincular_oauth(provider)
     user = build_from(provider)
-    Authentication.new(provider: provider, user_id: current_user.id, uid: user.uid, email: user.email)
-    if Authentication.save
+    authentication = Authentication.new(provider: provider, user_id: current_user.id, uid: user.uid, email: user.email)
+    if authentication.save
       true
     else
       false
@@ -118,20 +115,22 @@ class ServicesAuthController < ApplicationController
   def verificao_vincular_cas_interlegis(email, provider)
     authentication = Authentication.find_by(provider: provider, email: email)
     if authentication.present?
-      redirect_to user_path, erro: 'Está conta já está vinculada'
+      session['erro_vincular'] = 'Está conta já está vinculada'
+      redirect_to user_path
     else
       user = current_user
       user.email = email
-      if vincular_cas_ou_interlegis(user, 'senado')
+      if vincular_cas_ou_interlegis(user, provider)
         redirect_to user_path
       else
-        redirect_to user_path, erro: 'Erro ao vincular conta'
+        session['erro_vincular'] = 'Erro ao vincular conta'
+        redirect_to user_path
       end
     end
   end
   def vincular_cas_ou_interlegis(user, provider)
-    Authentication.new(provider: provider, user_id: user.id, email: user.email)
-    if Authentication.save
+    authentication = Authentication.new(provider: provider, user_id: user.id, email: user.email, uid: provider+user.id.to_s)
+    if authentication.save
       true
     else
       false
