@@ -28,8 +28,8 @@
             <fieldset class="clearfix">
 
               <div style="width:250px;">
-                <p><span class="fa fa-user"></span><%= f.text_field :email %></p> <!-- JS because of IE support; better: placeholder="Username" -->
-                <p style="margin-bottom: 0px !important;"><span class="fa fa-lock"></span><%= f.password_field :password , style: 'margin-bottom: 0px !important' %></p> <!-- JS because of IE support; better: placeholder="Password" -->
+                <p><span class="fa fa-user"></span><%= f.text_field :email , placeholder: "E-Mail"%></p> <!-- JS because of IE support; better: placeholder="Username" -->
+                <p style="margin-bottom: 0px !important;"><span class="fa fa-lock"></span><%= f.password_field :password , style: 'margin-bottom: 0px !important' , placeholder: "Senha"%></p> <!-- JS because of IE support; better: placeholder="Password" -->
                 <span style="text-align:left;  display: inline-block; margin-bottom: 9px;"><a class="small-text" href="#">Esqueci minha senha</a></span>
 
                 <div class="ui-group-buttons" style="width: 100% !important;">
