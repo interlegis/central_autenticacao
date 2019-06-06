@@ -9,10 +9,30 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if login(params[:user][:email], params[:user][:password])
-      @retorno = session[:login_back_url]
-      session[:login_back_url] = user_path
-      redirect_to @retorno || user_path
+    user = User.find_by_email(params[:user][:email])
+    if user.present?
+      crypted_password = user.crypted_password
+      unless user.salt.present? #supõe que está com 2a em vez de 2y e não tem salt
+        password=BCrypt::Engine.hash_secret('My@s0202', crypted_password[0,29])
+        if password == crypted_password
+          user.update(password: params[:user][:password])
+          auto_login(user)
+          @retorno = session[:login_back_url]
+          session[:login_back_url] = user_path
+          redirect_to @retorno || user_path
+        else
+          render 'new'
+        end
+      else
+        if login(params[:user][:email], params[:user][:password])
+          @retorno = session[:login_back_url]
+          session[:login_back_url] = user_path
+          redirect_to @retorno || user_path
+        else
+          render 'new'
+        end
+      end
+
     else
       render 'new'
     end

@@ -10,7 +10,7 @@ class ServicesAuthController < ApplicationController
       session[:login_back_url] = user_path
       success = vincular_oauth(params[:provider])
       if success
-        redirect_to @retorno || user_path, :notice => "Logged in from #{provider.titleize}!"
+        redirect_to @retorno || user_path
       else
         redirect_to(user_path, error: 'Não foi possível vincular conta')
       end
