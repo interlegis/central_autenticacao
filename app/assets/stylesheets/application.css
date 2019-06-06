@@ -20,7 +20,18 @@
 
 @import url//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 
-
+div.mainInterlegis{
+    background: #0264d6; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #011c35 1%, #01305c 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(1%,#011c35), color-stop(100%,#01305c)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  #011c35 1%,#01305c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  #011c35 1%,#01305c 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  #011c35 1%,#01305c 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  #011c35 1%,#01305c 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0264d6', endColorstr='#1c2b5a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    height:calc(100vh);
+    width:100%;
+}
 
 div.main{
     background: #0264d6; /* Old browsers */
@@ -103,7 +114,17 @@ p {
     transform: translate(-50%, -50%);
 }
 
-/* ---------- LOGIN ---------- */
+.formInterlegis{
+    background-image: url("https://i.imgur.com/YxTebO4.jpg");
+    background-color: rgba(0, 0, 0, 0.81) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 15%;
+    padding-bottom: 12%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
 
 #login form{
     width: 100%;
@@ -124,9 +145,9 @@ p {
 }
 
 #login form span.fa {
-    background-color: #fff;
+    background-color: #01305c;
     border-radius: 3px 0px 0px 3px;
-    color: #000;
+    color: white;
     display: block;
     float: left;
     height: 50px;
