@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -27,7 +28,7 @@
             <%= form_with scope: :user, url: sessions_path, local: true do |f| %>
             <fieldset class="clearfix">
 
-              <div style="width:250px;">
+              <div style="width:250px;" class="responsiveLoginArea">
                 <p><span class="fa fa-user"></span><%= f.text_field :email , placeholder: "E-Mail"%></p> <!-- JS because of IE support; better: placeholder="Username" -->
                 <p style="margin-bottom: 0px !important;"><span class="fa fa-lock"></span><%= f.password_field :password , style: 'margin-bottom: 0px !important' , placeholder: "Senha"%></p> <!-- JS because of IE support; better: placeholder="Password" -->
                 <span style="text-align:left;  display: inline-block; margin-bottom: 9px;"><a class="small-text" href="#">Esqueci minha senha</a></span>
@@ -56,8 +57,8 @@
           <div class="clearfix"></div>
             <% end %>
         </div> <!-- end login -->
-        <div class="logo escondeLogoResp">
-            <img src="https://www.senado.leg.br/atividade/plenario/ordemdodia/Img/brasaoColorDeg.png" style="width: 190px;">
+        <div class="logo escondeLogoResponsive">
+            <img src="https://www.senado.leg.br/atividade/plenario/ordemdodia/Img/brasaoColorDeg.png" style="width: 190px;" class="">
         </div>
       </div>
     </center>
