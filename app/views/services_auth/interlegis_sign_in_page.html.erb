@@ -3,14 +3,17 @@
 <div class="mainInterlegis">
   <div class="container ">
     <div class="titlePage">
-      <label style="letter-spacing: 0.2em;">INTERLEGIS</label>
+      <label style="letter-spacing: 0.2em;"></label>
     </div>
     <center>
       <div class="middle">
         <div id="login" class="loginResponsive" style="border-right: 0px !important;">
           <form class="formInterlegis">
             <%= form_with model: @user, local: true do |f| %>
-              <fieldset class="clearfix">
+              <fieldset class="clearfix paddingClearfixResponsive">
+                <div>
+                  <img class="imgLogoInterlegis" src="https://i.imgur.com/FhrwRa0.png">
+                </div>
                 <div style="width:350px;" class="inputAllResponsive">
                   <p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class:' inputResponsive' %></p>
                   <p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class:' inputResponsive' %> </p>

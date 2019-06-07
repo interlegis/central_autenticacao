@@ -27,6 +27,15 @@
     .inputAllResponsive{
         width: 250px !important;
     }
+    .formInterlegis{
+        border-radius:10px !important;
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+    .paddingClearfixResponsive{
+        padding: 10px !important;
+    }
 }
 @media screen and
 (min-width: 400px) and
@@ -48,6 +57,15 @@
         margin-left: 0 !important;
         margin-right: 0 !important;
         width: 100% !important;
+    }
+    .formInterlegis{
+        border-radius:10px !important;
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+    .paddingClearfixResponsive{
+        padding: 10px !important;
     }
 }
 .escondeLogoResponsive{
@@ -141,20 +159,22 @@ p {
 .container {
     left: 50%;
     position: fixed;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
 }
 
 .formInterlegis{
-    background-image: url("https://i.imgur.com/2j7pHeL.png");
-    background-color: rgba(0, 0, 0, 0.81) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 15%;
+    padding-top: 5%;
     padding-bottom: 12%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 10px;
+    border-radius:40px 0px 40px 0px;
+    -webkit-box-shadow: 0px 0px 56px 13px rgba(0,0,0,0.9);
+    -moz-box-shadow: 0px 0px 56px 13px rgba(0,0,0,0.9);
+    box-shadow: 0px 0px 56px 13px rgba(0,0,0,0.9);
 }
 
 #login form{
@@ -361,3 +381,8 @@ body{margin-top:20px;background:#5a5a5a}
 .ui-group-buttons .btn{float:left;border-radius:0}
 .ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
 .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
+
+.imgLogoInterlegis{
+    width: 105px;
+    margin-bottom: 10px;
+}
