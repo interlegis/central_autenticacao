@@ -14,7 +14,6 @@
  *= require_self
  */
 
-
 @media screen and
 (min-width: 200px) and
 (max-width: 399px){
@@ -33,8 +32,18 @@
         line-height: 30px !important;
         font-size: 30px !important;
     }
+    .loginResponsive{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+    .inputResponsive{
+        width: 200px !important;
+    }
+    .inputAllResponsive{
+        width: 250px !important;
+    }
 }
-
 
 @media screen and
 (min-width: 400px) and
@@ -52,31 +61,16 @@
     .titlePage {
         line-height: 50px !important;
     }
+    .loginResponsive{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
 }
 
 .escondeLogoResponsive{
     display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @charset "utf-8";
