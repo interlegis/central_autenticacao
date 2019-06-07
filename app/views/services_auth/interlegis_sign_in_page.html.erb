@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -18,16 +19,16 @@
     </div>
     <center>
       <div class="middle">
-        <div id="login" style="border-right: 0px !important;">
+        <div id="login" class="loginResponsive" style="border-right: 0px !important;">
           <form class="formInterlegis">
 
 
             <%= form_with model: @user, local: true do |f| %>
               <fieldset class="clearfix">
 
-                <div style="width:350px;">
-                  <p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px' %></p>
-                  <p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px' %> </p>
+                <div style="width:350px;" class="inputAllResponsive">
+                  <p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class:' inputResponsive' %></p>
+                  <p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class:' inputResponsive' %> </p>
 
 
                   <div class="ui-group-buttons" style="width: 100% !important;">
