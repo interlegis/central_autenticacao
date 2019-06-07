@@ -1,21 +1,5 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- Include the above in your HEAD tag -->
-
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-
-
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <div class="main">
   <div class="container">
     <div class="titlePage">
@@ -27,12 +11,10 @@
           <form>
             <%= form_with scope: :user, url: sessions_path, local: true do |f| %>
             <fieldset class="clearfix">
-
               <div style="width:250px;" class="responsiveLoginArea">
-                <p><span class="fa fa-user"></span><%= f.text_field :email , placeholder: "E-Mail"%></p> <!-- JS because of IE support; better: placeholder="Username" -->
-                <p style="margin-bottom: 0px !important;"><span class="fa fa-lock"></span><%= f.password_field :password , style: 'margin-bottom: 0px !important' , placeholder: "Senha"%></p> <!-- JS because of IE support; better: placeholder="Password" -->
+                <p><span class="fa fa-user"></span><%= f.text_field :email , placeholder: "E-Mail"%></p>
+                <p style="margin-bottom: 0px !important;"><span class="fa fa-lock"></span><%= f.password_field :password , style: 'margin-bottom: 0px !important' , placeholder: "Senha"%></p>
                 <span style="text-align:left;  display: inline-block; margin-bottom: 9px;"><a class="small-text" href="#">Esqueci minha senha</a></span>
-
                 <div class="ui-group-buttons" style="width: 100% !important;">
                   <a href="/users/new" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-user"></span> Cadastrar</a>
                   <div class="or"></div>
@@ -40,13 +22,12 @@
                 </div>
               </div>
               <div>
-
 <!--
                 <span style="text-align:right;  display: inline-block;"><%= f.submit 'Entrar' %></span>
 -->
-                <div  style="margin-left: auto; margin-right: auto;">
+                <div style="margin-left: auto; margin-right: auto;">
                   <a href="/oauth/facebook"  class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a>
-                  <a href="/oauth/google"  class="btn-social btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                  <a href="/oauth/google"  class="btn-social btn-google-plus"><i class="fa fa-google"></i></a>
                   <a href="/senado" class="btn-social btn-senado"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"></a>
                   <a href="/interlegis" class="btn-social btn-interlegis"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"></a>
                 </div>
@@ -56,7 +37,7 @@
           </form>
           <div class="clearfix"></div>
             <% end %>
-        </div> <!-- end login -->
+        </div>
         <div class="logo escondeLogoResponsive">
             <img src="https://www.senado.leg.br/atividade/plenario/ordemdodia/Img/brasaoColorDeg.png" style="width: 190px;" class="">
         </div>
@@ -65,14 +46,8 @@
   </div>
 </div>
 
-
-
-
 <!--
-
-
 <h1>Login Centralizado</h1>
-
 <%= form_with scope: :user, url: sessions_path, local: true do |f| %>
   <%= f.label :email %>
   <%= f.text_field :email %>
@@ -81,12 +56,8 @@
   <%= f.submit 'Entrar' %>
   <%= link_to 'Registrar', new_user_path, style: 'margin-left: 2vw;' %>
 <% end %>
-
-
 <%= link_to 'Login com Senado', cas_senado_path %> <br>
 <%= link_to 'Login com Interlegis', interlegis_page_path %><br>
 <%= link_to 'Login com Google', auth_at_provider_path(:provider => :google) %> <br>
 <%= link_to 'Login com Facebook', auth_at_provider_path(:provider => :facebook) %>
-
-
 -->

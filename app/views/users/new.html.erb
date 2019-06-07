@@ -1,21 +1,5 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- Include the above in your HEAD tag -->
-
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-
-
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <div class="main">
   <div class="container containerResp">
     <div class="titlePage">
@@ -27,17 +11,11 @@
           <form>
             <%= form_with model: @user, local: true do |f| %>
               <fieldset class="clearfix">
-
                 <div style="width:350px;" class="inputAllResponsive">
                   <p><span class="fa fa-user"></span><%= f.text_field :name, :required => true, placeholder: "Nome", style: 'width: 300px', class:' inputResponsive' %></p>
                   <p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class:' inputResponsive' %></p>
                   <p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class:' inputResponsive' %> </p>
                   <p><span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 300px', class:' inputResponsive' %></p>
-
-
-
-
-
                   <div class="ui-group-buttons" style="width: 100% !important;">
                     <a href="/" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
                     <div class="or"></div>
@@ -45,22 +23,18 @@
                   </div>
                 </div>
                 <div>
-
-
                 </div>
               </fieldset>
               <div class="clearfix"></div>
               </form>
               <div class="clearfix"></div>
             <% end %>
-            </div> <!-- end login -->
+            </div>
       </div>
     </center>
   </div>
 </div>
-
 <!--
-
 <%= form_with model: @user, local: true do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name, :required => true %> <br>
@@ -72,5 +46,4 @@
   <%= f.password_field :password_confirmation, :required => true %> <br>
   <%= f.submit 'Criar Conta' %>
 <% end %>
-
 -->
