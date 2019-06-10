@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
     if user.present?
       crypted_password = user.crypted_password
       unless user.salt.present? #supõe que está com 2a em vez de 2y e não tem salt
-        password=BCrypt::Engine.hash_secret('My@s0202', crypted_password[0,29])
+        password=BCrypt::Engine.hash_secret(params[:user][:password], crypted_password[0,29])
         if password == crypted_password
           user.update(password: params[:user][:password])
           auto_login(user)
