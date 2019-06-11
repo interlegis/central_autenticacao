@@ -16,10 +16,10 @@
             <%= form_with model: @user, local: true do |f| %>
               <fieldset class="clearfix">
                 <div style="width:350px;" class="inputAllResponsive">
-                  <p><span class="fa fa-user"></span><%= f.text_field :name, :required => true, placeholder: "Nome", style: 'width: 300px', class:' inputResponsive' %></p>
-                  <p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class:' inputResponsive' %></p>
-                  <p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class:' inputResponsive' %> </p>
-                  <p><span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 300px', class:' inputResponsive' %></p>
+                  <div class="wrapper"><p><span class="fa fa-user"></span><div class="tooltip">Insira seu nome</div><%= f.text_field :name, :required => true, placeholder: "Nome", style: 'width: 300px', class:' inputResponsive' %></p></div>
+                  <div class="wrapper"><p><span class="fa fa-at"></span><div class="tooltip">Insira seu email</div><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class:' inputResponsive' %></p></div>
+                  <div class="wrapper"><p><span class="fa fa-lock"></span><div class="tooltip">Insira sua senha</div><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class:' inputResponsive' %> </p></div>
+                  <div class="wrapper"><p><span class="fa fa-lock"></span><div class="tooltip">Repita sua senha</div><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 300px', class:' inputResponsive' %></p></div>
                   <div class="ui-group-buttons" style="width: 100% !important;">
                     <a href="/" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                     <div class="or"></div>
