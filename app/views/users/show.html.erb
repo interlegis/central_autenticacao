@@ -1,8 +1,89 @@
-<p><%= @user.email %></p>
-<%= link_to 'Sair', logout_path(@user.id), method: 'delete' %>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<div class="main">
+  <div class="container responsiveTop" style="margin-top: 2%;">
+    <div class="titlePage bigScreen">
+      <label>PÁGINA DO USUÁRIO</label>
+    </div>
+    <center>
+      <div class="middle">
+        <div id="login" class="sizeLeft responsiveSize">
 
+          <div class="">
+            <h2 style="color: white;">Dados do Usuário</h2>
+          </div>
+          <%= form_with model: @user, local: true do |f| %>
+            <fieldset class="clearfix">
+              <div style="width:250px;" class="">
+                <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :name, :required => true, placeholder: "Nome", style: 'width: 200px', class:' inputResponsive', value: '' %></p></div>
+                <div class="wrapper"><p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 200px', class:' inputResponsive', value: '' %></p></div>
+                <div class="wrapper"><p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class:' inputResponsive', value: '' %></p></div>
+                <div class="wrapper"><p><span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class:' inputResponsive', value: '' %></p></div>
+                <div class="ui-group-buttons" style="width: 100% !important;">
+                  <a href="/" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span> Editar</a>
+                  <div class="or"></div>
+                  <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>  Salvar</button>
+                </div>
+              </div>
+              <div>
+              </div>
+            </fieldset>
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+          <% end %>
+          <div class="smallScreen">
+            <div class="">
+              <h2 style="color: white;">Vincular Conta</h2>
+            </div>
+            <div style="margin-left: auto; margin-right: auto;">
+              <a href="/oauth/facebook"  class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a>
+              <a href="/oauth/google"  class="btn-social btn-google-plus"><i class="fa fa-google"></i></a>
+              <a href="/senado" class="btn-social btn-senado"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"></a>
+              <a href="/interlegis" class="btn-social btn-interlegis"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"></a>
+            </div>
+            <div class="paddingButtonSocial">  <a id="btnSocials" href="/senado"> <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button></a></div>
+
+          </div>
+        </div>
+
+
+
+        <div class="logo sizeRight bigScreen" style="padding: 2%  ;">
+          <div class="">
+            <h2>Vincular Contas</h2>
+          </div>
+          <div class="paddingButtonSocial"><a id="btnSocials" href="/oauth/facebook"><button type="button" class="btn btn-facebook-lg btn-lg btn-block"><i class="fa fa-facebook"></i> Facebook</button></a></div>
+          <div class="paddingButtonSocial">  <a id="btnSocials" href="/oauth/google"><button type="button" class="btn btn-google-plus-lg btn-lg btn-block"><i class="fa fa-google"></i> Google</button></a></div>
+          <div class="paddingButtonSocial">  <a id="btnSocials" href="/senado"> <button type="button" class="btn btn-senado-lg btn-lg btn-block"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"> Senado</button></a></div>
+          <div class="paddingButtonSocial"> <a id="btnSocials" href="/interlegis"><button type="button" class="btn btn-interlegis-lg btn-lg btn-block"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"> Interlegis</button></a></div>
+          <div class="">
+            <h2>Deslogar</h2>
+          </div>
+          <div class="paddingButtonSocial">  <a id="btnSocials" href="/senado"> <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button></a></div>
+        </div>
+
+
+
+
+
+      </div>
+    </center>
+  </div>
+</div>
+
+
+
+
+
+<!--
+<p><%= @user.email %></p>
 <h2>Vincular Contas</h2>
 <%= link_to 'Vincular Senado', cas_senado_path %> <br>
 <%= link_to 'Vincular Interlegis', interlegis_page_path %><br>
 <%= link_to 'Vincular Google', auth_at_provider_path(:provider => :google) %> <br>
 <%= link_to 'Vincular Facebook', auth_at_provider_path(:provider => :facebook) %>
+-->

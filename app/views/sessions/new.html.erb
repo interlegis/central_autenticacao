@@ -12,7 +12,6 @@
     <center>
       <div class="middle">
         <div id="login">
-          <form>
             <%= form_with scope: :user, url: sessions_path, local: true do |f| %>
             <fieldset class="clearfix">
               <div style="width:250px;" class="responsiveLoginArea">
@@ -38,7 +37,6 @@
               </div>
             </fieldset>
             <div class="clearfix"></div>
-          </form>
           <div class="clearfix"></div>
             <% end %>
         </div>
