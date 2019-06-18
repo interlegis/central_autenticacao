@@ -18,14 +18,15 @@ class UsersController < ApplicationController
       redirect_to @retorno || user_path
     else
       if @user.password.length < 8
-        @user.error.add({'senha': 'A senha deve conter no mínimo 8 caracteres.'})
+        @user.errors.add(:senha,'A senha deve conter no mínimo 8 caracteres.')
       end
       if @user.password != @user.password_confirmation
-        @user.error.add({'senha': 'As senhas digitadas não coincidem.'})
+        @user.errors.add(:conf_senha,'As senhas digitadas não coincidem.')
       end
       if User.find_by('email = ?', user_params[:email]).present?
-        @user.error.add({'email': 'Já existe usuário com esse e-mail ou CPF.'})
+        @user.errors.add(:email, 'Já existe usuário com esse e-mail ou CPF.')
       end
+      render 'new'
     end
 
   end

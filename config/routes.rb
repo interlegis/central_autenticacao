@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/interlegis' => 'services_auth#interlegis_sign_in', :as => 'interlegis'
   get '/senado' => 'services_auth#cas_sign_in', :as => 'cas_senado'
   get '/login' => 'sessions#new', :as => :login
+  get '/sessions' => 'sessions#new'
   delete 'logout' => 'sessions#destroy', :as => :logout
   resources :users, only: [:new, :create]
   get '/users' => 'users#show', :as => 'user'

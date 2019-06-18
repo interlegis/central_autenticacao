@@ -17,8 +17,11 @@
                 <div style="width:350px;" class="inputAllResponsive">
                   <div class="wrapper"><p><span class="fa fa-user"></span><div class="tooltip">Insira seu nome</div><%= f.text_field :name, :required => true, placeholder: "Nome", style: 'width: 300px', class:' inputResponsive', value: '' %></p></div>
                   <div class="wrapper"><p><span class="fa fa-at"></span><div class="tooltip">Insira seu email</div><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class:' inputResponsive', value: '' %></p></div>
+                  <%= @user.errors[:email][1] if @user.errors.include?(:email) %>
                   <div class="wrapper"><p><span class="fa fa-lock"></span><div class="tooltip">Insira sua senha</div><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class:' inputResponsive', value: '' %></p></div>
+                  <%= @user.errors[:senha][0] if @user.errors.include?(:senha) %>
                   <div class="wrapper"><p><span class="fa fa-lock"></span><div class="tooltip">Repita sua senha</div><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 300px', class:' inputResponsive', value: '' %></p></div>
+                  <%= @user.errors[:conf_senha][0] if @user.errors.include?(:conf_senha) %>
                   <div class="ui-group-buttons" style="width: 100% !important;">
                     <a href="/" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
                     <div class="or"></div>

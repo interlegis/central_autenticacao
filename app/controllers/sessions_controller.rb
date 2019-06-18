@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     else
       @social = params[:social] #indica que o login deve ser feito por redes sociais
       session[:login_back_url] = params[:return] || user_path
+      @erro = false
     end
   end
 
@@ -21,6 +22,7 @@ class SessionsController < ApplicationController
           session[:login_back_url] = user_path
           redirect_to @retorno || user_path
         else
+          @erro = true
           render 'new'
         end
       else
@@ -29,11 +31,13 @@ class SessionsController < ApplicationController
           session[:login_back_url] = user_path
           redirect_to @retorno || user_path
         else
+          @erro = true
           render 'new'
         end
       end
 
     else
+      @erro = true
       render 'new'
     end
   end
