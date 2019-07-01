@@ -1,5 +1,5 @@
 Doorkeeper::OpenidConnect.configure do
-  issuer ['CENTRAL_AUTENTICACAO_URL'].present? ? ['CENTRAL_AUTENTICACAO_URL'] : 'http://localhost:3000'
+  issuer ['CENTRAL_AUTENTICACAO_URL'].present? ? 'https://' + ['CENTRAL_AUTENTICACAO_URL'] : 'http://localhost:3000'
 
   signing_key <<-EOL
 -----BEGIN RSA PRIVATE KEY-----
