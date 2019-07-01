@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
+    @user.role = 'usuario'
     if @user.save
       login(params[:user][:email], params[:user][:password])
       @retorno = session[:login_back_url]
