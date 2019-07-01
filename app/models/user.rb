@@ -6,4 +6,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 }, unless: :skip_password
   validates :password, confirmation: true
   validates :email, uniqueness: true
+  def name
+    user.first_name + ' ' + user.last_name
+  end
 end
