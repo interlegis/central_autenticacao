@@ -13,7 +13,7 @@
       <div class="middle">
         <div id="login" class="loginResponsive" style="border-right: 0px !important;">
           <div class="formInterlegis">
-            <%= form_with model: @user, local: true do |f| %>
+            <%= form_with scope: :user, local: true do |f| %>
               <fieldset class="clearfix paddingClearfixResponsive">
                 <div>
                   <img class="imgLogoInterlegis" src="https://i.imgur.com/FhrwRa0.png">
@@ -39,43 +39,3 @@
     </center>
   </div>
 </div>
-
-<!--
-<%= form_with model: @user, local: true do |f| %>
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name, :required => true %> <br>
-  <%= f.label :email %>
-  <%= f.text_field :email, :required => true %> <br>
-  <%= f.label :password, 'Senha' %>
-  <%= f.password_field :password, :required => true %> <br>
-  <%= f.label :password_confirmation, 'Confirmar Senha' %>
-  <%= f.password_field :password_confirmation, :required => true %> <br>
-  <%= f.submit 'Criar Conta' %>
-<% end %>
--->
-<!--
-<h1>Login Centralizado</h1>
-<%= form_with scope: :user, url: sessions_path, local: true do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :password, 'Senha' %>
-  <%= f.password_field :password %><br>
-  <%= f.submit 'Entrar' %>
-  <%= link_to 'Registrar', new_user_path, style: 'margin-left: 2vw;' %>
-<% end %>
-<%= link_to 'Login com Senado', cas_senado_path %> <br>
-<%= link_to 'Login com Interlegis', interlegis_page_path %><br>
-<%= link_to 'Login com Google', auth_at_provider_path(:provider => :google) %> <br>
-<%= link_to 'Login com Facebook', auth_at_provider_path(:provider => :facebook) %>
--->
-<!--
-<h1>Login Interlegis</h1>
-<%= form_with scope: :user, url: interlegis_path, local: true do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :password, 'Senha' %>
-  <%= f.password_field :password %> <br>
-  <%= f.submit 'Entrar' %>
-  <%= link_to 'Voltar',  new_session_path, style: 'margin-left: 2vw;' %>
-<% end %>
--->
