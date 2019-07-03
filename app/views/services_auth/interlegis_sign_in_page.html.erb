@@ -27,6 +27,9 @@
                     <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span> Login</button>
                   </div>
                 </div>
+                <% if @erro %>
+                  <p style="color: red; font-weight: bold;">Email ou senha incorretos</p>
+                <% end %>
                 <div>
                 </div>
               </fieldset>

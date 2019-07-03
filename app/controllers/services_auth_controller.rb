@@ -41,11 +41,13 @@ class ServicesAuthController < ApplicationController
   end
 
   def interlegis_sign_in_page
+    @erro = false
   end
 
   def interlegis_sign_in
     require 'net/imap'
     logged = false
+    params[:user][:email] += '@interlegis.leg.br' unless params[:user][:email].include? '@interlegis.leg.br'
     begin
       imap = Net::IMAP.new("mailproxy.interlegis.leg.br", 993, true)
       imap.login(params[:user][:email], params[:user][:password])
@@ -74,7 +76,8 @@ class ServicesAuthController < ApplicationController
         redirect_to @retorno || user_path
       end
     else
-      redirect_to interlegis_page_path
+      @erro = true
+      render 'interlegis_sign_in_page'
     end
   end
 
