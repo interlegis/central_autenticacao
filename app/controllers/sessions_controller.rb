@@ -13,7 +13,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:user][:email])
     if user.present?
       crypted_password = user.crypted_password
-      unless user.salt.present? #supõe que está com 2a em vez de 2y e não tem salt
+      if !user.salt.present? and user.crypted_password.present? #supõe que está com 2a em vez de 2y e não tem salt
+        print(params[:user][:password])
+        print(params[:user][:email])
         password=BCrypt::Engine.hash_secret(params[:user][:password], crypted_password[0,29])
         if password == crypted_password
           user.update(password: params[:user][:password])
