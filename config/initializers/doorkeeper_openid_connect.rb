@@ -72,6 +72,40 @@ KbRf5izoSStze/FkQTp7fWybkE3LZvEb6L4gVk4BaqATPNjU4QF4A4BvDg2rtErp
         user.name
       end
     end
+    claim :first_name, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.first_name
+      end
+    end
+    claim :last_name, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.last_name
+      end
+    end
+    claim :cpf, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.cpf
+      end
+    end
+    claim :phone, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.phone
+      end
+    end
+    claim :role, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.role
+      end
+    end
+    claim :profile_image, scope: :openid do |user,scopes|
+      if scopes.exists?(:profile)
+        if user.avatar.attached?
+          Rails.application.routes.url_helpers.rails_blob_path(user.avatar, only_path: true)
+        else
+          ''
+        end
+      end
+    end
     claim :email, scope: :openid do |user, scopes|
       if scopes.exists?(:email)
         user.email

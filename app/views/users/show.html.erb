@@ -22,8 +22,11 @@
                 <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 200px', class:' inputResponsive' %></p></div>
                 <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 200px', class:' inputResponsive' %></p></div>
                 <div class="wrapper"><p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 200px', class:' inputResponsive' %></p></div>
+                <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 200px', class:' inputResponsive' %></p></div>
+                <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 200px', class:' inputResponsive' %></p></div>
                 <div class="wrapper"><p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class:' inputResponsive' %></p></div>
                 <div class="wrapper"><p><span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class:' inputResponsive' %></p></div>
+                <div class="wrapper"><p><span class="fa fa-user"></span><%= f.file_field :avatar, style: 'width: 200px', class:' inputResponsive' %></p></div>
                 <div class="ui-group-buttons" style="width: 100% !important;">
                   <a href="/" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span> Editar</a>
                   <div class="or"></div>
