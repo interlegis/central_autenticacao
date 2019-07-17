@@ -1,2 +1,2 @@
-require 'rack-cas/session_store/rails/active_record'
-Rails.application.config.session_store ActionDispatch::Session::RackCasActiveRecordStore
+# require 'rack-cas/session_store/rails/active_record'
+# Rails.application.config.session_store ActionDispatch::Session::RackCasActiveRecordStore

@@ -32,7 +32,7 @@ class ServicesAuthController < ApplicationController
           #redirect_to adicionar_dados_path, :notice => "Logged in from #{provider.titleize}!"
           redirect_to @retorno || user_path
         else
-          #Authentication.create(provider: provider, user_id: existent_user.id, uid: @user.uid)
+          Authentication.create(provider: provider, user_id: existent_user.id, uid: @user.uid)
           # Adicionar mensagem de erro
           render 'sessions/new'
         end
@@ -57,7 +57,8 @@ class ServicesAuthController < ApplicationController
     end
     if (logged)
       if current_user
-        verificao_vincular_cas_interlegis(params[:user][:email], 'interlegis')
+        puts("WTFFFF")
+        # verificao_vincular_cas_interlegis(params[:user][:email], 'interlegis')
       else
         # TODO adicionar verificação se usuário que não logou por oauth, cas ou interlegis já usa esse email
         authentication = Authentication.find_by(provider: 'interlegis', email: params[:user][:email])
@@ -67,7 +68,7 @@ class ServicesAuthController < ApplicationController
           user = User.new(email: params[:user][:email])
           user.skip_password = true
           if user.save
-            vincular_cas_ou_interlegis(user, 'interlegis')
+            # vincular_cas_ou_interlegis(user, 'interlegis')
             auto_login(user)
           end
         end
@@ -81,33 +82,36 @@ class ServicesAuthController < ApplicationController
     end
   end
 
-  def cas_sign_in
-    if session['cas'].present? and session['cas']['user'].present?
-      if current_user
-        verificao_vincular_cas_interlegis(session['cas']['user']+'@senado.leg.br', 'senado')
-      else
-        authentication = Authentication.find_by(provider: 'senado', email: session['cas']['user']+'@senado.leg.br')
-        if authentication.present?
-          auto_login(authentication.user)
-        else
-          user = User.new(email: session['cas']['user']+'@senado.leg.br')
-          user.skip_password = true
-          if user.save
-            vincular_cas_ou_interlegis(user, 'senado')
-            auto_login(user)
-          end
-        end
-        @retorno = session[:login_back_url]
-        session[:login_back_url] = user_path
-        redirect_to @retorno || user_path
-      end
-    else
-      render status: 401, json: {'authenticate': true}
-    end
-  end
+  # def cas_sign_in
+  #   if session['cas'].present? and session['cas']['user'].present?
+  #     if current_user
+  #       verificao_vincular_cas_interlegis(session['cas']['user']+'@senado.leg.br', 'senado')
+  #     else
+  #       authentication = Authentication.find_by(provider: 'senado', email: session['cas']['user']+'@senado.leg.br')
+  #       if authentication.present?
+  #         auto_login(authentication.user)
+  #       else
+  #         user = User.new(email: session['cas']['user']+'@senado.leg.br')
+  #         user.skip_password = true
+  #         if user.save
+  #           vincular_cas_ou_interlegis(user, 'senado')
+  #           auto_login(user)
+  #         end
+  #       end
+  #       @retorno = session[:login_back_url]
+  #       session[:login_back_url] = user_path
+  #       redirect_to @retorno || user_path
+  #     end
+  #   else
+  #     render status: 401, json: {'authenticate': true}
+  #   end
+  # end
   private
   def vincular_oauth(provider)
+    puts("PASSOU")
+    puts(provider)
     user = build_from(provider)
+    puts(user)
     authentication = Authentication.new(provider: provider, user_id: current_user.id, uid: user.uid, email: user.email)
     if authentication.save
       true
@@ -115,28 +119,28 @@ class ServicesAuthController < ApplicationController
       false
     end
   end
-  def verificao_vincular_cas_interlegis(email, provider)
-    authentication = Authentication.find_by(provider: provider, email: email)
-    if authentication.present?
-      session['erro_vincular'] = 'Está conta já está vinculada'
-      redirect_to user_path
-    else
-      user = current_user
-      user.email = email
-      if vincular_cas_ou_interlegis(user, provider)
-        redirect_to user_path
-      else
-        session['erro_vincular'] = 'Erro ao vincular conta'
-        redirect_to user_path
-      end
-    end
-  end
-  def vincular_cas_ou_interlegis(user, provider)
-    authentication = Authentication.new(provider: provider, user_id: user.id, email: user.email, uid: provider+user.id.to_s)
-    if authentication.save
-      true
-    else
-      false
-    end
-  end
+  # def verificao_vincular_cas_interlegis(email, provider)
+  #   authentication = Authentication.find_by(provider: provider, email: email)
+  #   if authentication.present?
+  #     session['erro_vincular'] = 'Está conta já está vinculada'
+  #     redirect_to user_path
+  #   else
+  #     user = current_user
+  #     user.email = email
+  #     if vincular_cas_ou_interlegis(user, provider)
+  #       redirect_to user_path
+  #     else
+  #       session['erro_vincular'] = 'Erro ao vincular conta'
+  #       redirect_to user_path
+  #     end
+  #   end
+  # end
+  # def vincular_cas_ou_interlegis(user, provider)
+  #   authentication = Authentication.new(provider: provider, user_id: user.id, email: user.email, uid: provider+user.id.to_s)
+  #   if authentication.save
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
 end

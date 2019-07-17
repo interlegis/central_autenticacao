@@ -1,5 +1,5 @@
 Doorkeeper::OpenidConnect.configure do
-  issuer ENV['CENTRAL_AUTENTICACAO_URL'].present? ? 'https://' + ENV['CENTRAL_AUTENTICACAO_URL'] : 'http://localhost:3000'
+  issuer ENV['CENTRAL_AUTENTICACAO_URL'].present? ? 'https://' + ENV['CENTRAL_AUTENTICACAO_URL'] : 'http://localhost:10524'
 
   signing_key <<-EOL
 -----BEGIN RSA PRIVATE KEY-----
@@ -39,7 +39,10 @@ KbRf5izoSStze/FkQTp7fWybkE3LZvEb6L4gVk4BaqATPNjU4QF4A4BvDg2rtErp
   end
 
   auth_time_from_resource_owner do |resource_owner|
-    resource_owner.last_activity_at
+    puts("AQISDFASD SADF SDAF DSF DS FDSA FAS")
+    puts(resource_owner)
+    puts("PASSOU MSM")
+    resource_owner.updated_at
   end
 
   reauthenticate_resource_owner do |resource_owner, return_to|
@@ -94,18 +97,22 @@ KbRf5izoSStze/FkQTp7fWybkE3LZvEb6L4gVk4BaqATPNjU4QF4A4BvDg2rtErp
     end
     claim :role, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
-        user.role
-      end
-    end
-    claim :profile_image, scope: :openid do |user,scopes|
-      if scopes.exists?(:profile)
-        if user.avatar.attached?
-          Rails.application.routes.url_helpers.rails_blob_path(user.avatar, only_path: true)
-        else
-          ''
+        if user.role == 'admin'
+          1
+        else 
+          2
         end
       end
     end
+    # claim :profile_image, scope: :openid do |user,scopes|
+    #   if scopes.exists?(:profile)
+    #     if user.avatar.attached?
+    #       Rails.application.routes.url_helpers.rails_blob_path(user.avatar, only_path: true)
+    #     else
+    #       ''
+    #     end
+    #   end
+    # end
     claim :email, scope: :openid do |user, scopes|
       if scopes.exists?(:email)
         user.email
