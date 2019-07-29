@@ -22,3 +22,11 @@
 
 /public/assets
 .byebug_history
+/.idea/.generators
+/.idea/.gitignore
+/.idea/.rakeTasks
+/.idea/login_centralizado_interlegis.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/log/.keep
+/tmp/.keep
