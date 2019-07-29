@@ -14,6 +14,17 @@ class UsersController < ApplicationController
     @user.role = 'usuario'
     if @user.save
       login(params[:user][:email], params[:user][:password])
+
+      #Criação de chave para realização de operações do usuário no webservice
+      options = [('a'..'z'), ('A'..'Z'), ('1' .. '9')].map(&:to_a).flatten # Seleciona letras e números como carácter da chave
+      key='a'
+      loop do
+        key=(0...50).map { options[rand(options.length)] }.join # Cria uma chave de 50 carácteres com letras e números
+        api=ApiAccess.find_by(key: key) #Verifica se a chave já existe
+        break if !api.present?
+      end
+      @api=ApiAccess.create(user_id: @user.id, api_access_level_id: 2, key: key) # Salva a chave do usuário
+
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path
       redirect_to @retorno || user_path

@@ -27,12 +27,10 @@ class ServicesAuthController < ApplicationController
           @user = create_from(provider)
           authentication = Authentication.find_by(user_id: @user.id)
           authentication.update(email: @user.email)
+          criar_api_access_key(user)
           auto_login(@user)
-          #session[:login_back_url] = @retorno
-          #redirect_to adicionar_dados_path, :notice => "Logged in from #{provider.titleize}!"
           redirect_to @retorno || user_path
         else
-          #Authentication.create(provider: provider, user_id: existent_user.id, uid: @user.uid)
           # Adicionar mensagem de erro
           render 'sessions/new'
         end
@@ -67,6 +65,7 @@ class ServicesAuthController < ApplicationController
           user = User.new(email: params[:user][:email])
           user.skip_password = true
           if user.save
+            criar_api_access_key(user)
             vincular_cas_ou_interlegis(user, 'interlegis')
             auto_login(user)
           end
@@ -93,6 +92,7 @@ class ServicesAuthController < ApplicationController
           user = User.new(email: session['cas']['user']+'@senado.leg.br')
           user.skip_password = true
           if user.save
+            criar_api_access_key(user)
             vincular_cas_ou_interlegis(user, 'senado')
             auto_login(user)
           end
@@ -138,5 +138,17 @@ class ServicesAuthController < ApplicationController
     else
       false
     end
+  end
+  def criar_api_access_key(user)
+    #Criação de chave para realização de operações do usuário no webservice
+    options = [('a'..'z'), ('A'..'Z'), ('1' .. '9')].map(&:to_a).flatten # Seleciona letras e números como carácter da chave
+    key='a'
+    loop do
+      key=(0...50).map { options[rand(options.length)] }.join # Cria uma chave de 50 carácteres com letras e números
+      api=ApiAccess.find_by(key: key) #Verifica se a chave já existe
+      break if !api.present?
+    end
+    @api=ApiAccess.create(user_id: user.id, api_access_level_id: 1, key: key) # Salva a chave do usuário
+    # TODO é necessário redirecionar o usuário para completar os dados faltantes (nível de API 1)
   end
 end

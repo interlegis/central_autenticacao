@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   post "oauth/callback" => "services_auth#callback"
   get "oauth/callback" => "services_auth#callback"
   get "oauth/:provider" => "services_auth#oauth", :as => :auth_at_provider
+  get 'api/level' => 'api_accesses#verify_api_level', :as => :api_level_verification
 end

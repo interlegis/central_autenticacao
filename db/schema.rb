@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_172104) do
+ActiveRecord::Schema.define(version: 2019_07_29_130744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 2019_07_22_172104) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "api_accesses", force: :cascade do |t|
+    t.string "key"
+    t.bigint "user_id"
+    t.bigint "api_accesses_level_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["api_accesses_level_id"], name: "index_api_accesses_on_api_accesses_level_id"
+    t.index ["user_id"], name: "index_api_accesses_on_user_id"
+  end
+
+  create_table "api_accesses_levels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -120,15 +136,12 @@ ActiveRecord::Schema.define(version: 2019_07_22_172104) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
-    t.datetime "last_login_at"
-    t.datetime "last_logout_at"
-    t.datetime "last_activity_at"
-    t.string "last_login_from_ip_address"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "api_accesses", "api_accesses_levels"
+  add_foreign_key "api_accesses", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_openid_requests", "oauth_access_grants", column: "access_grant_id"
