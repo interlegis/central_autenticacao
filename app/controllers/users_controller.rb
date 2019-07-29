@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
+    if user_params[:avatar]
+      @user.avatar.attach(user_params[:avatar])
+    end
     @user.role = 'usuario'
     if @user.save
       login(params[:user][:email], params[:user][:password])
@@ -44,6 +47,10 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    if user_params[:avatar]
+      @user.avatar.attach(user_params[:avatar])
+      @user.save
+    end
     if @user.update(edit_user_params)
       redirect_to user_path
     else
