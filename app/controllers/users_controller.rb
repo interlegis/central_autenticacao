@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         api=ApiAccess.find_by(key: key) #Verifica se a chave já existe
         break if !api.present?
       end
-      @api=ApiAccess.create(user_id: @user.id, api_access_level_id: 2, key: key) # Salva a chave do usuário
+      @api=ApiAccess.create(user_id: @user.id, api_accesses_level_id: 2, key: key) # Salva a chave do usuário
 
       @retorno = session[:login_back_url]
       session[:login_back_url] = user_path

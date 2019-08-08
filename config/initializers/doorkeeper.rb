@@ -14,7 +14,7 @@ Doorkeeper.configure do
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
   admin_authenticator do
-    if current_user and current_user.role == 'admin'
+    if current_user and current_user.role.id == 1
       current_user
     else
       redirect_to '/'
