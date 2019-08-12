@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if user_params[:avatar]
       @user.avatar.attach(user_params[:avatar])
     end
-    @user.role = 'usuario'
+    @user.role_id = 2
     if @user.save
       login(params[:user][:email], params[:user][:password])
 
