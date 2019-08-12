@@ -151,10 +151,10 @@ Rails.application.config.sorcery.configure do |config|
   # config.auth0.callback_url = "https://0.0.0.0:3000/oauth/callback?provider=auth0"
   # config.auth0.site = "https://example.auth0.com"
   #
-  config.google.key = ENV['CENTRAL_AUTENTICACAO_Google_key']
-  config.google.secret = ENV['CENTRAL_AUTENTICACAO_Google_secret']
-  config.google.callback_url = ENV['CENTRAL_AUTENTICACAO_URL'].present? ? "https://" + ENV['CENTRAL_AUTENTICACAO_URL'] + "/oauth/callback?provider=google" : "http://localhost:3000/oauth/callback?provider=google"
-  config.google.user_info_mapping = {:uid => "id", :email => "email", :given_name => 'first_name', :family_name => 'last_name'}
+  config.google.key = '598337774689-6ucn89k15au3h17eomun02pf79ntq3jv.apps.googleusercontent.com'
+  config.google.secret = 'fr8o75jm-NngU9zdvzA-fy7g'
+  config.google.callback_url = ENV['CENTRAL_AUTENTICACAO_URL'].present? ? "https://" + ENV['CENTRAL_AUTENTICACAO_URL'] + "/oauth/callback?provider=google" : "http://localhost:3001/oauth/callback?provider=google"
+  config.google.user_info_mapping = {:uid => "id", :email => "email", :first_name => 'given_name', :last_name => 'family_name'}
   config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.

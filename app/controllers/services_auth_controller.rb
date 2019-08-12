@@ -27,7 +27,7 @@ class ServicesAuthController < ApplicationController
           @user = create_from(provider)
           authentication = Authentication.find_by(user_id: @user.id)
           authentication.update(email: @user.email)
-          criar_api_access_key(user)
+          criar_api_access_key(@user)
           auto_login(@user)
           redirect_to @retorno || user_path
         else
