@@ -111,6 +111,11 @@ KbRf5izoSStze/FkQTp7fWybkE3LZvEb6L4gVk4BaqATPNjU4QF4A4BvDg2rtErp
         user.email
       end
     end
+    claim :key, scope: :openid do |user, scopes|
+      if scopes.exists?(:profile)
+        user.api_access.key
+      end
+    end
     claim :locale, scope: :openid do |user, scopes|
       if scopes.exists?(:profile)
         'pt_br'
