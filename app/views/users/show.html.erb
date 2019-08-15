@@ -19,19 +19,40 @@
           <%= form_with model: @user, local: true do |f| %>
             <fieldset class="clearfix">
               <div style="width:250px;" class="">
-                <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 200px', class:' inputResponsive' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-user"></span><%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 200px', class:' inputResponsive' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 200px', class:' inputResponsive' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-phone"></span><%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 200px', class:' inputResponsive' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-address-card"></span><%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 200px', class:' inputResponsive cpf' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-birthday-cake"></span><%= f.text_field :birth_date, :required => true, placeholder: "Data de Nascimento", style: 'width: 200px', class:' inputResponsive date' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class:' inputResponsive' %></p></div>
-                <div class="wrapper"><p><span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class:' inputResponsive' %></p></div>
-                <div class="wrapper upload"><p><span class="fa fa-photo"></span><%= f.file_field :avatar,  accept: 'text/html', style: 'width: 200px', class:' inputResponsive' %></p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-user"></span><%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-user"></span><%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-phone"></span><%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-address-card"></span><%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 200px', class: ' inputResponsive cpf' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-birthday-cake"></span><%= f.text_field :birth_date, :required => true, placeholder: "Data de Nascimento", style: 'width: 200px', class: ' inputResponsive date' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
+                <div class="wrapper"><p>
+                  <span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
+                <div class="wrapper upload"><p>
+                  <span class="fa fa-photo"></span><%= f.file_field :avatar, accept: 'text/html', style: 'width: 200px', class: ' inputResponsive' %>
+                </p></div>
                 <div class="ui-group-buttons" style="width: 100% !important;">
-                  <a href="/" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span> Editar</a>
+                  <a href="/" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
+                    Editar</a>
                   <div class="or"></div>
-                  <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>  Salvar</button>
+                  <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>
+                    Salvar
+                  </button>
                 </div>
               </div>
               <div>
@@ -40,39 +61,111 @@
             <div class="clearfix"></div>
             <div class="clearfix"></div>
           <% end %>
-          <div class="smallScreen">
-            <div class="">
-              <h2 style="color: white;">Vincular Conta</h2>
-            </div>
-            <div style="margin-left: auto; margin-right: auto;">
-              <a href="/oauth/facebook"  class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a>
-              <a href="/oauth/google"  class="btn-social btn-google-plus"><i class="fa fa-google"></i></a>
-              <a href="/senado" class="btn-social btn-senado"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"></a>
-              <a href="/interlegis" class="btn-social btn-interlegis"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"></a>
-            </div>
-            <div class="paddingButtonSocial">  <a id="btnSocials" href="/senado"> <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button></a></div>
+          <% auths = @user.authentications %>
+          <% if auths.length < 4 %>
+            <div class="smallScreen">
+              <div class="">
+                <h2 style="color: white;">Vincular Contas</h2>
+              </div>
+              <div style="margin-left: auto; margin-right: auto;">
+                <% if auths.find_by_provider('facebook').present? %>
+                  <a href="#" class="btn-social btn-facebook disabled"><i class="fa fa-facebook"></i></a>
+                <% else %>
+                  <a href="/oauth/facebook" class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a>
+                <% end %>
+                <% if auths.find_by_provider('google').present? %>
+                  <a href="#" class="btn-social btn-google-plus disabled"><i class="fa fa-google"></i></a>
+                <% else %>
+                  <a href="/oauth/google" class="btn-social btn-google-plus"><i class="fa fa-google"></i></a>
+                <% end %>
+                <% if auths.find_by_provider('senado').present? %>
+                  <a href="#" class="btn-social btn-senado disabled"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"></a>
+                <% else %>
+                  <a href="/senado" class="btn-social btn-senado"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"></a>
+                <% end %>
+                <% if auths.find_by_provider('interlegis').present? %>
+                  <a href="#" class="btn-social btn-interlegis disabled"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"></a>
+                <% else %>
+                  <a href="/interlegis" class="btn-social btn-interlegis"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"></a>
+                <% end %>
+              </div>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="/senado">
+                <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button>
+              </a></div>
 
-          </div>
+            </div>
+          <% end %>
         </div>
-
 
 
         <div class="logo sizeRight bigScreen" style="padding: 2%  ;">
-          <div class="">
-            <h2>Vincular Contas</h2>
-          </div>
-          <div class="paddingButtonSocial"><a id="btnSocials" href="/oauth/facebook"><button type="button" class="btn btn-facebook-lg btn-lg btn-block"><i class="fa fa-facebook"></i> Facebook</button></a></div>
-          <div class="paddingButtonSocial">  <a id="btnSocials" href="/oauth/google"><button type="button" class="btn btn-google-plus-lg btn-lg btn-block"><i class="fa fa-google"></i> Google</button></a></div>
-          <div class="paddingButtonSocial">  <a id="btnSocials" href="/senado"> <button type="button" class="btn btn-senado-lg btn-lg btn-block"><img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin"> Senado</button></a></div>
-          <div class="paddingButtonSocial"> <a id="btnSocials" href="/interlegis"><button type="button" class="btn btn-interlegis-lg btn-lg btn-block"><img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"> Interlegis</button></a></div>
+          <% if auths.length < 4 %>
+            <div class="">
+              <h2>Vincular Contas</h2>
+            </div>
+            <% if auths.find_by_provider('facebook').present? %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="#">
+                <button type="button" class="btn btn-facebook-lg btn-lg btn-block disabled">
+                  <i class="fa fa-facebook"></i>
+                  Facebook
+                </button>
+              </a></div>
+            <% else %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="/oauth/facebook">
+                <button type="button" class="btn btn-facebook-lg btn-lg btn-block"><i class="fa fa-facebook"></i>
+                  Facebook
+                </button>
+              </a></div>
+            <% end %>
+            <% if auths.find_by_provider('google').present? %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="#">
+                <button type="button" class="btn btn-google-plus-lg btn-lg btn-block disabled">
+                  <i class="fa fa-google"></i> Google
+                </button>
+              </a></div>
+            <% else %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="/oauth/google">
+                <button type="button" class="btn btn-google-plus-lg btn-lg btn-block"><i class="fa fa-google"></i>
+                  Google
+                </button>
+              </a></div>
+            <% end %>
+            <% if auths.find_by_provider('senado').present? %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="#">
+                <button type="button" class="btn btn-senado-lg btn-lg btn-block disabled">
+                  <img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin">
+                  Senado
+                </button>
+              </a></div>
+            <% else %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="/senado">
+                <button type="button" class="btn btn-senado-lg btn-lg btn-block">
+                  <img src="https://www12.senado.leg.br/hpsenado/icon_senado.png" style="width: 16px" id="imgLogin">
+                  Senado
+                </button>
+              </a></div>
+            <% end %>
+            <% if auths.find_by_provider('interlegis').present? %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="#">
+                <button type="button" class="btn btn-interlegis-lg btn-lg btn-block disabled">
+                  <img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"> Interlegis
+                </button>
+              </a></div>
+            <% else %>
+              <div class="paddingButtonSocial"><a id="btnSocials" href="/interlegis">
+                <button type="button" class="btn btn-interlegis-lg btn-lg btn-block">
+                  <img src="http://www.interlegis.leg.br/logo.png" style="width: 16px" id="imgLogin"> Interlegis
+                </button>
+              </a></div>
+            <% end %>
+          <% end %>
           <div class="">
             <h2>Deslogar</h2>
           </div>
-          <div class="paddingButtonSocial">  <a id="btnSocials" href="/senado"> <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button></a></div>
+          <div class="paddingButtonSocial"><a id="btnSocials" href="/senado">
+            <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button>
+          </a></div>
         </div>
-
-
-
 
 
       </div>
