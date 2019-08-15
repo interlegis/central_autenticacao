@@ -148,7 +148,7 @@ class ServicesAuthController < ApplicationController
       api=ApiAccess.find_by(key: key) #Verifica se a chave já existe
       break if !api.present?
     end
-    @api=ApiAccess.create(user_id: user.id, api_access_level_id: 1, key: key) # Salva a chave do usuário
+    @api=ApiAccess.create(user_id: user.id, api_accesses_level_id: 1, key: key) # Salva a chave do usuário
     # TODO é necessário redirecionar o usuário para completar os dados faltantes (nível de API 1)
   end
 end
