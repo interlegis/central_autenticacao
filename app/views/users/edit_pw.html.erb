@@ -1,0 +1,37 @@
+<div class="main">
+  <div class="container responsiveTop" style="margin-top: 2%;">
+    <div class="titlePage bigScreen">
+      <center>
+        <div class="middle">
+          <div id="login" class="loginResponsive" style="border-right: 0px !important;">
+            <%= form_with model: @user, local: true do |f| %>
+              <fieldset class="clearfix">
+                <div style="width:250px;" class="">
+                  <div class="wrapper"><p>
+                    <span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class: ' inputResponsive' %>
+                  </p></div>
+                  <div class="wrapper"><p>
+                    <span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class: ' inputResponsive' %>
+                  </p></div>
+                  <div class="ui-group-buttons" style="width: 100% !important;">
+                    <a href="/users" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
+                      Voltar</a>
+                    <div class="or"></div>
+                    <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>
+                      Salvar
+                    </button>
+                  </div>
+                  <%= f.hidden_field :edit_type, value: 'pw' %>
+                </div>
+                <div>
+                </div>
+              </fieldset>
+              <div class="clearfix"></div>
+              <div class="clearfix"></div>
+            <% end %>
+          </div>
+        </div>
+      </center>
+    </div>
+  </div>
+</div>

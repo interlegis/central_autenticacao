@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/users' => 'users#show', :as => 'user'
   patch '/users' => 'users#update'
   put '/users' => 'users#update'
+  get '/users/edit' => 'users#edit', :as => 'edit_user'
+  get '/users/password' => 'users#edit_pw', :as => 'edit_password'
   post "oauth/callback" => "services_auth#callback"
   get "oauth/callback" => "services_auth#callback"
   get "oauth/:provider" => "services_auth#oauth", :as => :auth_at_provider

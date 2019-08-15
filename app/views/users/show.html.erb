@@ -1,9 +1,3 @@
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <div class="main">
   <div class="container responsiveTop" style="margin-top: 2%;">
     <div class="titlePage bigScreen">
@@ -14,53 +8,11 @@
         <div id="login" class="sizeLeft responsiveSize">
 
           <div class="">
-            <h2 style="color: white;">Dados do Usuário</h2>
+            <h2 style="color: white;">Usuário</h2>
           </div>
-          <%= form_with model: @user, local: true do |f| %>
-            <fieldset class="clearfix">
-              <div style="width:250px;" class="">
-                <div class="wrapper"><p>
-                  <span class="fa fa-user"></span><%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-user"></span><%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-phone"></span><%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-address-card"></span><%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 200px', class: ' inputResponsive cpf' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-birthday-cake"></span><%= f.text_field :birth_date, :required => true, placeholder: "Data de Nascimento", style: 'width: 200px', class: ' inputResponsive date' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="wrapper"><p>
-                  <span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="wrapper upload"><p>
-                  <span class="fa fa-photo"></span><%= f.file_field :avatar, accept: 'text/html', style: 'width: 200px', class: ' inputResponsive' %>
-                </p></div>
-                <div class="ui-group-buttons" style="width: 100% !important;">
-                  <a href="/" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
-                    Editar</a>
-                  <div class="or"></div>
-                  <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>
-                    Salvar
-                  </button>
-                </div>
-              </div>
-              <div>
-              </div>
-            </fieldset>
-            <div class="clearfix"></div>
-            <div class="clearfix"></div>
-          <% end %>
+          <%= image_tag @user.avatar if @user.avatar.attached? %> <h3 style="display: inline-block; color: white;"><%= @user.name %></h3><br> <!-- Aqui talvez fique legal imagem redonda e ícone/img de usuário se não tiver a imagem -->
+          <%= link_to 'Editar Minha Conta', edit_user_path, style: 'font-size: 15px;'  %> <br><br>
+          <%= link_to 'Editar Minha Senha', edit_password_path, style: 'font-size: 15px;'  %>
           <% auths = @user.authentications %>
           <% if auths.length < 4 %>
             <div class="smallScreen">
@@ -172,16 +124,3 @@
     </center>
   </div>
 </div>
-
-
-
-
-
-<!--
-<p><%= @user.email %></p>
-<h2>Vincular Contas</h2>
-<%= link_to 'Vincular Senado', cas_senado_path %> <br>
-<%= link_to 'Vincular Interlegis', interlegis_page_path %><br>
-<%= link_to 'Vincular Google', auth_at_provider_path(:provider => :google) %> <br>
-<%= link_to 'Vincular Facebook', auth_at_provider_path(:provider => :facebook) %>
--->

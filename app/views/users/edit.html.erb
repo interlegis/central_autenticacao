@@ -1,0 +1,52 @@
+<div class="main">
+  <div class="container responsiveTop" style="margin-top: 2%;">
+    <div class="titlePage bigScreen">
+      <center>
+        <div class="middle">
+          <div id="login" class="loginResponsive" style="border-right: 0px !important;">
+      <%= form_with model: @user, local: true do |f| %>
+        <fieldset class="clearfix">
+          <div style="width:250px;" class="">
+            <div class="wrapper"><p>
+              <span class="fa fa-user"></span><%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 200px', class: ' inputResponsive' %>
+            </p></div>
+            <div class="wrapper"><p>
+              <span class="fa fa-user"></span><%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 200px', class: ' inputResponsive' %>
+            </p></div>
+            <div class="wrapper"><p>
+              <span class="fa fa-at"></span><%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 200px', class: ' inputResponsive' %>
+            </p></div>
+            <div class="wrapper"><p>
+              <span class="fa fa-phone"></span><%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 200px', class: ' inputResponsive' %>
+            </p></div>
+            <div class="wrapper"><p>
+              <span class="fa fa-address-card"></span><%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 200px', class: ' inputResponsive', 'data-mask': '999.999.999-99' %>
+            </p></div>
+            <div class="wrapper"><p>
+              <span class="fa fa-birthday-cake"></span><%= f.text_field :birth_date, :required => true, placeholder: "Data de Nascimento", style: 'width: 200px', class: 'inputResponsive', 'data-mask': '99/99/9999' %>
+            </p></div>
+            <%= f.hidden_field :edit_type, value: 'user' %>
+            <div class="wrapper upload"><p>
+              <span class="fa fa-photo"></span><%= f.file_field :avatar, accept: 'text/html', style: 'width: 200px', class: ' inputResponsive' %>
+            </p></div>
+            <div class="ui-group-buttons" style="width: 100% !important;">
+              <a href="/users" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
+                Voltar</a>
+              <div class="or"></div>
+              <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>
+                Salvar
+              </button>
+            </div>
+          </div>
+          <div>
+          </div>
+        </fieldset>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
+  </div>
+      </center>
+</div>
+  </div>
+</div>

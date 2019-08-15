@@ -11,6 +11,7 @@ class User < ApplicationRecord
   before_save :capitalize_name
   has_one_attached :avatar
   belongs_to :role
+  # TODO adicionar validação de data
 
   def name
     self.first_name + ' ' + self.last_name

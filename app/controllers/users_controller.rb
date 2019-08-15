@@ -44,21 +44,32 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
+  def edit
+    @user = current_user
+  end
+  def edit_pw
+    @user = current_user
+  end
   def update
     @user = current_user
-    if user_params[:avatar]
-      @user.avatar.attach(user_params[:avatar])
+    if edit_user_params[:avatar]
+      @user.avatar.attach(edit_user_params[:avatar])
+      @user.skip_password = true
       @user.save
+    end
+    if params[:user][:edit_type] == 'user'
+      @user.skip_password = true
     end
     if @user.update(edit_user_params)
       redirect_to user_path
     else
-      if @user.password.length < 8
-        @user.errors.add(:senha,'A senha deve conter no mínimo 8 caracteres.')
-      end
-      if @user.password != @user.password_confirmation
-        @user.errors.add(:conf_senha,'As senhas digitadas não coincidem.')
+      if params[:user][:edit_type] == 'user'
+        if @user.password.length < 8
+          @user.errors.add(:senha,'A senha deve conter no mínimo 8 caracteres.')
+        end
+        if @user.password != @user.password_confirmation
+          @user.errors.add(:conf_senha,'As senhas digitadas não coincidem.')
+        end
       end
       if User.find_by('email = ? and id != ?', user_params[:email], @user.id).present?
         @user.errors.add(:email, 'Já existe usuário com esse e-mail.')
