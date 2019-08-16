@@ -29,7 +29,7 @@
           <div class="actions">
             <%= f.submit %>
           </div>
-          <small class="warning"> dasfsda <%= @user.errors[:senha][0] if @user.errors.include?(:senha) %> dfasf</small>
+          <small class="warning"> <%= @user.errors[:senha][0] if @user.errors.include?(:senha) %> </small>
         <% end %>
         </div>
         <div class="logo escondeLogoResponsive">
