@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   use_doorkeeper_openid_connect
   use_doorkeeper
   root 'sessions#new'
@@ -17,4 +20,5 @@ Rails.application.routes.draw do
   get "oauth/callback" => "services_auth#callback"
   get "oauth/:provider" => "services_auth#oauth", :as => :auth_at_provider
   get 'api/level' => 'api_accesses#verify_api_level', :as => :api_level_verification
+  resources :password_resets, only: [:create, :edit, :update]
 end
