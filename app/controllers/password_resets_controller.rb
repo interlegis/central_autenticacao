@@ -11,15 +11,13 @@ class PasswordResetsController < ApplicationController
     if @user     
       @user.deliver_reset_password_instructions!
       if @user.reset_password_token
-        puts("AQUI")
-        puts(@user.reset_password_token)
-        puts("AQUI")
         UserMailer.reset_password_email(@user).deliver_now    
         redirect_to(root_path, :notice => 'Verifique o seu email para resetar a sua senha.')
       else 
-        puts("Não é possível")
         redirect_to(root_path, :notice=> 'Tente mais tarde, a senha foi alterada recentemente')
       end
+    else
+      redirect_to(root_path, :notice=> 'Não existe esse email no sistema.')
     end 
   end
     
@@ -44,7 +42,7 @@ class PasswordResetsController < ApplicationController
       return render :action => "edit"
     end
 
-    if params[:user][:password].length > 8
+    if params[:user][:password].length < 8
       @user.errors.add(:senha, "'A senha deve conter no mínimo 8 caracteres.'")
       return render :action => "edit"
     end
