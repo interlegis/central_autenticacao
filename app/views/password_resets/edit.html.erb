@@ -1,0 +1,41 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<div class="main">
+  <div class="container" style="margin-top: 2%;">
+    <div class="titlePage">
+      <label>CENTRAL DE AUTENTICAÇÃO</label>
+    </div>
+    <center>
+      <div class="middle">
+        <div id="login">
+        <h1>Escolha uma nova senha</h1>
+        <%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>          
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= @user.email %>
+          </div>
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+          <small class="warning"> dasfsda <%= @user.errors[:senha][0] if @user.errors.include?(:senha) %> dfasf</small>
+        <% end %>
+        </div>
+        <div class="logo escondeLogoResponsive">
+          <img src="https://www.senado.leg.br/atividade/plenario/ordemdodia/Img/brasaoColorDeg.png" style="width: 190px;" class="">
+        </div>
+      </div>
+    </center>
+  </div>
+</div>
