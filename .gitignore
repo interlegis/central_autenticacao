@@ -32,3 +32,4 @@
 /tmp/.keep
 /config/local_env.yml
 /yarn.lock
+/.idea/*
