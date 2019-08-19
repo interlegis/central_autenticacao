@@ -35,9 +35,15 @@
                 </div>
                 <%= @user.errors[:email][1] if @user.errors.include?(:email) %>
                 <div class="wrapper"><p><span class="fa fa-photo"></span>
-                  <div class="tooltip">Adicione sua foto
-                  </div><%= f.file_field :avatar, :required => false, style: 'width: 200px', class: ' inputResponsive' %></p>
+                  <div class="tooltip">Adicione sua foto</div>
+                  <%= f.file_field :avatar, :required => false, style: 'width: 200px', class: ' inputResponsive', id: "files", accept:'image/*' %></p>
+                  <div class="image-box">
+                    <div id="result">
+                      <img src="" id="imagem"/>
+                    </div>
+                  </div>
                 </div>
+                <%= @user.errors[:avatar][1] if @user.errors.include?(:avatar) %>
                 <div class="wrapper"><p><span class="fa fa-lock"></span>
                   <div class="tooltip">Insira sua senha
                   </div><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class: ' inputResponsive' %></p>

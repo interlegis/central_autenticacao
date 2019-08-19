@@ -41,6 +41,9 @@ class UsersController < ApplicationController
       if User.find_by('email = ?', user_params[:email]).present?
         @user.errors.add(:email, 'Já existe usuário com esse e-mail ou CPF.')
       end
+      if @user.avatar.blob.content_type != ['image/png', 'image/jpg', 'image/jpeg']
+        @user.errors.add(:avatar, 'Não é possível utilizar este formato de imagem, utilize .png ou .jpg ou jpeg')
+      end
       render 'new'
     end
   end
@@ -73,6 +76,9 @@ class UsersController < ApplicationController
       end
       if User.find_by('email = ? and id != ?', user_params[:email], @user.id).present?
         @user.errors.add(:email, 'Já existe usuário com esse e-mail.')
+      end
+      if @user.avatar.blob.content_type != ['image/png', 'image/jpg', 'image/jpeg']
+        @user.errors.add(:avatar, 'Não é possível!')
       end
     end
   end

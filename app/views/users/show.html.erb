@@ -10,7 +10,8 @@
           <div class="">
             <h2 style="color: white;">Usuário</h2>
           </div>
-          <%= image_tag @user.avatar if @user.avatar.attached? %> <h3 style="display: inline-block; color: white;"><%= @user.name %></h3><br> <!-- Aqui talvez fique legal imagem redonda e ícone/img de usuário se não tiver a imagem -->
+          <%= image_tag (@user.avatar if @user.avatar.attached?), :style => "width: 200px; height: 200px;" %> 
+          <h3 style="display: inline-block; color: white;"><%= @user.name %></h3><br> <!-- Aqui talvez fique legal imagem redonda e ícone/img de usuário se não tiver a imagem -->
           <%= link_to 'Editar Minha Conta', edit_user_path, style: 'font-size: 15px;'  %> <br><br>
           <%= link_to 'Editar Minha Senha', edit_password_path, style: 'font-size: 15px;'  %>
           <% auths = @user.authentications %>

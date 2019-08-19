@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :email, uniqueness: true
   validates :cpf, length: { is: 14 }, uniqueness: true
+  validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg']}
   before_save :capitalize_name
   has_one_attached :avatar
   belongs_to :role
