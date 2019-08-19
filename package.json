@@ -1,5 +1,7 @@
 {
   "name": "login_centralizado_interlegis",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-mask-plugin": "^1.14.16"
+  }
 }
