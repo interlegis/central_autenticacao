@@ -2,6 +2,16 @@
   "name": "login_centralizado_interlegis",
   "private": true,
   "dependencies": {
-    "jquery-mask-plugin": "^1.14.16"
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "latest",
+    "@rails/webpacker": "^4.0.7",
+    "bootstrap3": "^3.3.5",
+    "channels": "^0.0.4",
+    "jquery": "^3.4.1",
+    "jquery-mask-plugin": "^1.14.16",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.0"
   }
 }
