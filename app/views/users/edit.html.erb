@@ -35,9 +35,11 @@
                 <img src="" id="imagem"/>
               </div>
             </div>
+            <div class="error">
+              <%= @user.errors[:avatar][1] if @user.errors.include?(:avatar) %>
+            </div>
           </div>
-          <%= @user.errors[:avatar][1] if @user.errors.include?(:avatar) %>
-            <div class="ui-group-buttons" style="width: 100% !important;">
+          <div class="ui-group-buttons" style="width: 100% !important;">
               <a href="/users" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
                 Voltar</a>
               <div class="or"></div>

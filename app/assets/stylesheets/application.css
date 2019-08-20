@@ -423,6 +423,12 @@ body{background:#5a5a5a}
     margin-bottom: 10px;
 }
 
+.error {
+    color: red;
+    font-size: 10px;
+    line-height: 1;
+}
+
 .wrapper {
     color: #555;
     cursor: help;

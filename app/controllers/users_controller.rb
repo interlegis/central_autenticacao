@@ -41,8 +41,10 @@ class UsersController < ApplicationController
       if User.find_by('email = ?', user_params[:email]).present?
         @user.errors.add(:email, 'Já existe usuário com esse e-mail ou CPF.')
       end
-      if @user.avatar.blob.content_type != ['image/png', 'image/jpg', 'image/jpeg']
-        @user.errors.add(:avatar, 'Não é possível utilizar este formato de imagem, utilize .png ou .jpg ou jpeg')
+      if @user.attributes['avatar']
+        if @user.avatar.blob.content_type != ['image/png', 'image/jpg', 'image/jpeg']
+          @user.errors.add(:avatar, 'Não é possível utilizar este formato de imagem, utilize .png ou .jpg ou jpeg')
+        end
       end
       render 'new'
     end
@@ -56,9 +58,13 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if edit_user_params[:avatar]
-      @user.avatar.attach(edit_user_params[:avatar])
       @user.skip_password = true
-      @user.save
+      if edit_user_params[:avatar].content_type == ['image/png', 'image/jpg', 'image/jpeg']
+        @user.avatar.attach(edit_user_params[:avatar])
+        @user.save
+      end
+    else
+      @user.skip_avatar = true
     end
     if params[:user][:edit_type] == 'user'
       @user.skip_password = true
@@ -66,7 +72,10 @@ class UsersController < ApplicationController
     if @user.update(edit_user_params)
       redirect_to user_path
     else
-      if params[:user][:edit_type] == 'user'
+      if edit_user_params[:avatar].content_type != ['image/png', 'image/jpg', 'image/jpeg']
+        @user.errors.add(:avatar, 'Não é possível utilizar este formato de imagem, utilize .png ou .jpg ou jpeg')
+      end
+      if !@user.skip_password
         if @user.password.length < 8
           @user.errors.add(:senha,'A senha deve conter no mínimo 8 caracteres.')
         end
@@ -77,9 +86,7 @@ class UsersController < ApplicationController
       if User.find_by('email = ? and id != ?', user_params[:email], @user.id).present?
         @user.errors.add(:email, 'Já existe usuário com esse e-mail.')
       end
-      if @user.avatar.blob.content_type != ['image/png', 'image/jpg', 'image/jpeg']
-        @user.errors.add(:avatar, 'Não é possível!')
-      end
+      render 'edit'
     end
   end
   private

@@ -3,12 +3,12 @@ class User < ApplicationRecord
   has_many :authentications, :dependent => :destroy
   has_one :api_access, :dependent => :destroy
   accepts_nested_attributes_for :authentications
-  attr_accessor :skip_password, :uid
+  attr_accessor :skip_password, :skip_avatar,:uid
   validates :password, length: { minimum: 8 }, unless: :skip_password
   validates :password, confirmation: true
   validates :email, uniqueness: true
   validates :cpf, length: { is: 14 }, uniqueness: true
-  validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg']}
+  validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg']}, unless: :skip_avatar
   before_save :capitalize_name
   has_one_attached :avatar
   belongs_to :role
