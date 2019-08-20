@@ -42,7 +42,6 @@ $(document).ready(function () {
 
 $(document).on('turbolinks:load', function() {
     var filesInput = document.getElementById("files");
-    console.log("PASOSDFASDOFIOASDOFIDS")
     filesInput.addEventListener("change", function(event){
         var files = event.target.files; //FileList object
         var output = document.getElementById("result");
@@ -73,5 +72,4 @@ $(document).on('turbolinks:load', function() {
         }
 
     });
-})
-
+});
