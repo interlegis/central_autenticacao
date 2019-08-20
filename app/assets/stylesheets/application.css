@@ -580,3 +580,7 @@ body{background:#5a5a5a}
 .bigScreen{
     display: block;
 }
+a:hover{
+    color: darkgrey !important;
+    text-decoration: none !important;
+}

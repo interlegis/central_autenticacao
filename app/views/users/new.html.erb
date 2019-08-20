@@ -7,12 +7,18 @@
       <div class="middle">
         <div id="login" class="loginResponsive" style="border-right: 0px !important;">
           <%= form_with model: @user, local: true do |f| %>
+
+
+
             <fieldset class="clearfix">
               <div style="width:350px;" class="inputAllResponsive">
+
+
                 <div class="wrapper"><p><span class="fa fa-user"></span>
                   <div class="tooltip">Insira seu nome
                   </div><%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 300px', class: ' inputResponsive' %></p>
                 </div>
+
                 <div class="wrapper"><p><span class="fa fa-user"></span>
                   <div class="tooltip">Insira seu sobrenome
                   </div><%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 300px', class: ' inputResponsive' %></p>

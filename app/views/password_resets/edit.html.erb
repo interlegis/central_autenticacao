@@ -13,7 +13,7 @@
       <div class="middle">
         <div id="login">
         <h1>Escolha uma nova senha</h1>
-        <%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>          
+        <%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>
           <div class="field">
             <%= f.label :email %><br />
             <%= @user.email %>
