@@ -6,7 +6,6 @@
     <center>
       <div class="middle">
         <div id="login" class="sizeLeft responsiveSize">
-
           <div class="">
             <h2 style="color: white;">Usuário</h2>
           </div>
@@ -45,14 +44,11 @@
                 <% end %>
               </div>
               <div class="paddingButtonSocial"><a id="btnSocials" href="/senado">
-                <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button>
+                <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref btn btn-danger btn-lg btn-block' %> </button>
               </a></div>
-
             </div>
           <% end %>
         </div>
-
-
         <div class="logo sizeRight bigScreen" style="padding: 2%  ;">
           <% if auths.length < 4 %>
             <div class="">
@@ -118,11 +114,9 @@
             <h2>Deslogar</h2>
           </div>
           <div class="paddingButtonSocial"><a id="btnSocials" href="/senado">
-            <button type="button" class="btn btn-danger btn-lg btn-block"> <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref' %> </button>
+             <%= link_to 'Sair', logout_path(@user.id), method: 'delete', class: 'noHref btn btn-danger btn-lg btn-block' %> </button>
           </a></div>
         </div>
-
-
       </div>
     </center>
   </div>

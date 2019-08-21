@@ -6,15 +6,15 @@
           <div id="login" class="loginResponsive" style="border-right: 0px !important;">
             <%= form_with model: @user, local: true do |f| %>
               <fieldset class="clearfix">
-                <div style="width:250px;" class="">
+                <div style="width:350px;" class="">
                   <div class="wrapper"><p>
-                    <span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 200px', class: ' inputResponsive' %>
+                    <span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class: ' inputResponsive' %>
                   </p></div>
                   <div class="wrapper"><p>
-                    <span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 200px', class: ' inputResponsive' %>
+                    <span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 300px', class: ' inputResponsive' %>
                   </p></div>
                   <div class="ui-group-buttons" style="width: 100% !important;">
-                    <a href="/users" class="btn btn-warning" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
+                    <a href="/users" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
                       Voltar</a>
                     <div class="or"></div>
                     <button class="btn btn-success" style="width: 49%;"><span class="glyphicon glyphicon-ok"></span>
