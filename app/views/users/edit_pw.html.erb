@@ -10,9 +10,15 @@
                   <div class="wrapper"><p>
                     <span class="fa fa-lock"></span><%= f.password_field :password, :required => true, placeholder: "Senha", style: 'width: 300px', class: ' inputResponsive' %>
                   </p></div>
+                  <div class="error">
+                    <%= @user.errors[:senha][0] if @user.errors.include?(:senha) %>
+                  </div>    
                   <div class="wrapper"><p>
                     <span class="fa fa-lock"></span><%= f.password_field :password_confirmation, :required => true, placeholder: "Confirmação Senha", style: 'width: 300px', class: ' inputResponsive' %>
                   </p></div>
+                  <div class="error">
+                    <%= @user.errors[:conf_senha][0] if @user.errors.include?(:conf_senha) %>
+                  </div>    
                   <div class="ui-group-buttons" style="width: 100% !important;">
                     <a href="/users" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
                       Voltar</a>

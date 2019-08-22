@@ -72,8 +72,14 @@ class UsersController < ApplicationController
     if @user.update(edit_user_params)
       redirect_to user_path
     else
-      if edit_user_params[:avatar].content_type != ['image/png', 'image/jpg', 'image/jpeg']
-        @user.errors.add(:avatar, 'Não é possível utilizar este formato de imagem, utilize .png ou .jpg ou jpeg')
+      if edit_user_params[:avatar]
+        if edit_user_params[:avatar].content_type != ['image/png', 'image/jpg', 'image/jpeg']
+          @user.errors.add(:avatar, 'Não é possível utilizar este formato de imagem, utilize .png ou .jpg ou jpeg')
+        end
+        if User.find_by('email = ? and id != ?', user_params[:email], @user.id).present?
+          @user.errors.add(:email, 'Já existe usuário com esse e-mail.')
+        end
+        render 'edit' 
       end
       if !@user.skip_password
         if @user.password.length < 8
@@ -82,11 +88,8 @@ class UsersController < ApplicationController
         if @user.password != @user.password_confirmation
           @user.errors.add(:conf_senha,'As senhas digitadas não coincidem.')
         end
+        render 'edit_pw' 
       end
-      if User.find_by('email = ? and id != ?', user_params[:email], @user.id).present?
-        @user.errors.add(:email, 'Já existe usuário com esse e-mail.')
-      end
-      render 'edit'
     end
   end
   private
