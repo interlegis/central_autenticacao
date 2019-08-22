@@ -35,6 +35,9 @@
                       <img src="" id="imagem"/>
                     </div>
                   </div>
+                  <div class="error">
+                    <%= @user.errors[:avatar][1] if @user.errors.include?(:avatar) %>
+                  </div>
                 </div>
 
                 <div class="ui-group-buttons" style="width: 100% !important;">
