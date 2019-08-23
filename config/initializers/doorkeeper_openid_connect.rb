@@ -100,7 +100,7 @@ KbRf5izoSStze/FkQTp7fWybkE3LZvEb6L4gVk4BaqATPNjU4QF4A4BvDg2rtErp
     claim :profile_image, scope: :openid do |user,scopes|
       if scopes.exists?(:profile)
         if user.avatar.attached?
-          Rails.application.routes.url_helpers.rails_blob_path(user.avatar, only_path: true)
+          Rails.application.routes.url_helpers.rails_blob_url(user.avatar, only_path: false)
         else
           ''
         end
