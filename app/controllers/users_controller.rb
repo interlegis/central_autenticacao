@@ -92,6 +92,14 @@ class UsersController < ApplicationController
       end
     end
   end
+  def panel
+    @user = current_user
+    if !(current_user and current_user.role_id == 1)
+      redirect_to user_path
+    else
+      @api_keys = ApiAccess.all
+    end
+  end
   private
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cpf, :birth_date, :cep, :state, :city, :address, :phone, :avatar)

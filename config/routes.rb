@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get '/users' => 'users#show', :as => 'user'
   patch '/users' => 'users#update'
+  get '/panel' => 'users#panel'
   put '/users' => 'users#update'
   get '/users/edit' => 'users#edit', :as => 'edit_user'
   get '/users/password' => 'users#edit_pw', :as => 'edit_password'
