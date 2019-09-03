@@ -1,6 +1,6 @@
 <div class="main">
   <div class="container containerResp">
-    <div class="titlePage">
+    <div class="titlePage" style="margin-bottom: 14px !important;">
       <label>CADASTRO</label>
     </div>
     <center>
@@ -8,7 +8,7 @@
         <div id="login" class="loginResponsive" style="border-right: 0px !important;">
           <%= form_with model: @user, local: true do |f| %>
             <fieldset class="clearfix">
-              <div style="width:350px;" class="inputAllResponsive">
+              <div style="width:340px;" class="inputAllResponsive">
                 <div class="wrapper"><p><span class="fa fa-user"></span>
                   <%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 300px', class: ' inputResponsive' %></p>
                 </div>
@@ -31,7 +31,7 @@
                 <%= @user.errors[:email][1] if @user.errors.include?(:email) %>
                 </div>
                 <div class="wrapper"><p><span class="fa fa-photo"></span>
-                  <%= f.file_field :avatar, :required => false, style: 'width: calc(100% - 50px); background-color: white; border-radius: 0px 3px 3px 0px;', class: ' inputResponsive', id: "files", accept:'image/*' %></p>
+                  <%= f.file_field :avatar, :required => false, style: 'width: calc(100% - 40px); background-color: white; border-radius: 0px 3px 3px 0px;', class: ' inputResponsive', id: "files", accept:'image/*' %></p>
                   <div class="image-box">
                     <div id="result">
                       <img src="" id="imagem"/>

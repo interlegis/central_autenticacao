@@ -233,15 +233,15 @@ p {
   color: white;
   display: block;
   float: left;
-  height: 50px;
+  height: 40px;
   font-size:24px;
-  line-height: 50px;
+  line-height: 40px;
   text-align: center;
-  width: 50px;
+  width: 40px;
 }
 
 #login form input {
-  height: 50px;
+  height: 40px;
 }
 fieldset{
   padding:0;
@@ -583,4 +583,7 @@ body{background:#5a5a5a}
 a:hover{
   color: darkgrey !important;
   text-decoration: none !important;
+}
+p {
+  margin: 0 0 6px !important;
 }
