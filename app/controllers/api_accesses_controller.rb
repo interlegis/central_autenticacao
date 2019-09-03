@@ -7,7 +7,8 @@ class ApiAccessesController < ApplicationController
   def update
     @api_key = ApiAccess.find(params[:id])
     if @api_key.present?
-      @api_key.update(ext_id: params[:api][:ext_id])
+      @api_key.update(ext_id: params[:api_access][:ext_id], api_accesses_level_id: params[:api_access][:api_accesses_level_id])
+      # TODO Adicionar o redirect
     else
       @error = 'Chave inválida'
       # TODO Adicionar o redirect
