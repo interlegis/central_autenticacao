@@ -16,7 +16,7 @@
           <%= link_to 'Editar Minha Conta', edit_user_path, style: 'font-size: 15px;'  %> <br><br>
           <%= link_to 'Editar Minha Senha', edit_password_path, style: 'font-size: 15px;'  %><br><br>
           <% if @user.role.id == 1 %>
-            <%= link_to 'Consultar chaves', panel_path, style: 'font-size: 15px;'  %>
+            <%= link_to 'Consultar chaves', panel_keys_path, style: 'font-size: 15px;'  %>
           <% end %>
           <% auths = @user.authentications %>
           <% if auths.length < 4 %>

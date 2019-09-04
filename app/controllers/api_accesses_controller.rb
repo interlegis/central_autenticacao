@@ -8,30 +8,35 @@ class ApiAccessesController < ApplicationController
     @api_key = ApiAccess.find(params[:id])
     if @api_key.present?
       @api_key.update(ext_id: params[:api_access][:ext_id], api_accesses_level_id: params[:api_access][:api_accesses_level_id])
-      # TODO Adicionar o redirect
+      redirect_to panel_keys_path
     else
       @error = 'Chave inválida'
-      # TODO Adicionar o redirect
+      @api_keys = ApiAccess.all
+      render 'users/panel'
     end
   end
   def new
     @user = User.new
   end
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      criar_api_access_key(@user, params[:api][:level])
-      # TODO Adicionar o redirect
+    if create_user_with_api
+      redirect_to panel_keys_path
+    else
+      @error = 'Não foi possível criar esse usuário'
+      @api_keys = ApiAccess.all
+      render 'users/panel'
     end
   end
   def create_remote
-    @user = User.new(params[:user])
-    if @user.save
-      criar_api_access_key(@user, params[:api][:level])
-      # TODO Adicionar o render
-    end
+    @success = create_user_with_api
   end
-  def criar_api_access_key(user, api_level)
+
+  private
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name)
+  end
+
+  def criar_api_access_key(user, api_level, ext_id)
     #Criação de chave para realização de operações do usuário no webservice
     options = [('a'..'z'), ('A'..'Z'), ('1' .. '9')].map(&:to_a).flatten # Seleciona letras e números como carácter da chave
     key='a'
@@ -41,5 +46,29 @@ class ApiAccessesController < ApplicationController
       break if !api.present?
     end
     @api=ApiAccess.create(user_id: user.id, api_accesses_level_id: api_level, key: key) # Salva a chave do usuário
+  end
+
+  def create_user_with_api
+    options_cpf = [('1' .. '9')].map(&:to_a).flatten
+    cpf=''
+    loop do
+      cpf=(0...11).map { options_cpf[rand(options_cpf.length)] }.join # Cria um cpf aleatório TODO pensar em solução melhor
+      cpf.insert(3,'.')
+      cpf.insert(7,'.')
+      cpf.insert(11,'-')
+      user=User.find_by(cpf: cpf)
+      break unless user.present?
+    end
+    @user = User.new(user_params)
+    @user.cpf = cpf
+    @user.role_id = 2
+    @user.skip_password = true
+    @user.skip_avatar = true
+    if @user.save
+      criar_api_access_key(@user, params[:user][:api_accesses_level_id], params[:user][:ext_id])
+      true
+    else
+      false
+    end
   end
 end
