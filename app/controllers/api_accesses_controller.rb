@@ -1,6 +1,7 @@
 class ApiAccessesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :admin_permission
+  before_action :admin_permission, except: [:create_remote]
+  before_action :admin_api_key, only: [:create_remote]
   def verify_api_level
     @api = ApiAccess.find_by_key(params[:key])
   end
@@ -69,6 +70,14 @@ class ApiAccessesController < ApplicationController
       true
     else
       false
+    end
+  end
+  def admin_api_key
+    api_key = ApiAccess.find_by_key(params[:key])
+    unless api_key.present? and api_key.api_accesses_level.id > 3
+      render status: 400, json: {
+          message: "Chave inválida ou ausente",
+      }.to_json
     end
   end
 end
