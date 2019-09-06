@@ -50,6 +50,21 @@ th {
   background-color: #ffcb2e;
   color: black !important;
 }
+
+.btnVoltar{
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
+  font-size: 14px !important;
+  text-decoration: none;
+}
+.btnVoltar:hover{
+  background-color: #d43c38;
+  color: #DCDCDC !important;
+}
 .size{
   width: 90% !important;
 }
@@ -61,6 +76,12 @@ textarea:focus, input:focus{
   float: right;
   text-align: right;
   padding-bottom: 10px;
+}
+.rowVoltar{
+  width: 50%;
+  float: right;
+  text-align: right;
+  padding-top: 10px;
 }
 </style>
 
@@ -104,6 +125,10 @@ textarea:focus, input:focus{
             </tr>
           <% end %>
         </table>
+        <div class="rowVoltar">
+          <a href="/" class="btnVoltar" role="button">
+            Voltar</a>
+        </div>
       </div>
     </center>
   </div>
