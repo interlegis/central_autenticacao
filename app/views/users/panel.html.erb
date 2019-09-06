@@ -1,79 +1,111 @@
 <style>
-  tbody {
-    display: block;
-    height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  table {
-    background: white;
-    border-collapse: collapse;
-    font-size: 20px;
-    overflow-y: scroll;
-  }
-
-  th, td {
-    padding: 5px;
-    text-align: center;
-    padding: 8px;
-    white-space: nowrap;
-  }
-
-  td {
-    padding: 15px;
-  }
-
-  tr {
-    background-color: white;
-  }
-
-  tr:nth-child(even){background-color: #f2f2f2}
-
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
+tr {
+  background-color: white;
+}
+tr:nth-child(even){
+  background-color: #f2f2f2 !important;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+.titleOrientation{
+  text-align: center;
+  padding: 1% !important;
+}
+.tableSize{
+  width: 100%;
+  font-size: 14px !important;
+}
+.textOrientation{
+  padding: 15px;
+}
+.inputProperties{
+  padding: 5px !important;
+  border-radius: 25px !important;
+  background: #F0F0F0 !important;
+  border: 2px solid #DCDCDC !important;
+}
+.btn-update{
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 7px;
+  border-radius: 5px;
+  float: right;
+}
+.btn-update:hover{
+  background-color: #278fff;
+}
+.btnNewUser{
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
+  font-size: 14px !important;
+}
+.btnNewUser:hover{
+  background-color: #ffcb2e;
+  color: black !important;
+}
+.size{
+  width: 90% !important;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+.rowNewUser{
+  width: 50%;
+  float: right;
+  text-align: right;
+  padding-bottom: 10px;
+}
 </style>
+
 <div class="main">
-  <div class="container responsiveTop" style="margin-top: 2%;">
+  <div class="container responsiveTop size" style="margin-top: 2%;">
     <div class="titlePage bigScreen">
       <label>PÁGINA DO USUÁRIO</label>
     </div>
     <center>
           <div class="">
-            <h2 style="color: white;">Usuário</h2>
+            <h2 style="color: white;">Usuários</h2>
           </div>
           # <% if @user.avatar.attached? %>
           #   <%= image_tag @user.avatar, :style => "width: 200px; height: 200px;" %>
           # <% end %>
-          <table>
-              <tr>
-                <th>Nome</th>
-                <th>Chave</th>
-                <th>Nível de acesso</th>
-                <th>Info extra</th>
-              </tr>
-              <% @api_keys.each do |api_key| %>
-                <tr>
-                  <td><%= api_key.user.first_name + api_key.user.last_name %></td>
-                  <td><%= api_key.key %></td>
-                  <td><%= api_key.api_accesses_level.name %></td>
-                  <td><%= api_key.ext_id %></td>
-                  <td>
-                    <%= form_with model: api_key, local: true do |f| %>
-                      <%= f.text_field :ext_id %>
-                      <%= f.select :api_accesses_level_id, options_for_select(Array(1..4), api_key.api_accesses_level.id) %>
-                      <%= f.submit 'Atualizar' %>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-
-          </table>
+      <div style="">
+        <div class="rowNewUser">
+          <%= link_to 'Criar novo usuário com chave', new_api_access_path, class: 'btnNewUser' %>
+        </div>
+        <table class="tableSize">
+          <tr>
+            <th class="titleOrientation">Nome</th>
+            <th class="titleOrientation">Chave</th>
+            <th class="titleOrientation">Nível de acesso</th>
+            <th class="titleOrientation">Info extra</th>
+            <th class="titleOrientation">Update</th>
+          </tr>
+          <% @api_keys.each do |api_key| %>
+            <tr>
+              <td class="textOrientation"><%= api_key.user.first_name + api_key.user.last_name %></td>
+              <td class="textOrientation"><%= api_key.key %></td>
+              <td class="textOrientation"><%= api_key.api_accesses_level.name %></td>
+              <td class="textOrientation"><%= api_key.ext_id %></td>
+              <td class="textOrientation">
+                <%= form_with model: api_key, local: true do |f| %>
+                  <%= f.text_field :ext_id, placeholder: "Name", class: 'inputProperties' %>
+                  <%= f.select :api_accesses_level_id, options_for_select(Array(1..4), api_key.api_accesses_level.id) %>
+                  <%= f.submit 'Atualizar', class: 'btn-update' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </center>
-  </div>
-  <div>
-    <%= link_to 'Criar novo usuário com chave', new_api_access_path %>
   </div>
 </div>
 
