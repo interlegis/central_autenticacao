@@ -1,22 +1,23 @@
 <%= form_with model: @user, local: true do |f| %>
   <fieldset class="clearfix">
     <div style="width:340px;" class="inputAllResponsive">
-      <% if !(@user.first_name.present? and @user.last_name.present? and @user.email.present?) or @editable %>
-        <div class="wrapper"><p><span class="fa fa-user"></span>
-          <%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 300px', class: ' inputResponsive' %></p>
-        </div>
-        <div class="wrapper"><p><span class="fa fa-user"></span>
-          <%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 300px', class: ' inputResponsive' %></p>
-        </div>
-        <div class="wrapper"><p><span class="fa fa-at"></span>
-          <%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class: ' inputResponsive' %></p>
-        </div>
-      <% end %>
+      <div class="wrapper"><p><span class="fa fa-user"></span>
+        <%= f.text_field :first_name, :required => true, placeholder: "Nome", style: 'width: 300px', class: ' inputResponsive' %></p>
+      </div>
+      <div class="wrapper"><p><span class="fa fa-user"></span>
+        <%= f.text_field :last_name, :required => true, placeholder: "Sobrenome", style: 'width: 300px', class: ' inputResponsive' %></p>
+      </div>
+      <div class="wrapper"><p><span class="fa fa-at"></span>
+        <%= f.text_field :email, :required => true, placeholder: "E-Mail", style: 'width: 300px', class: ' inputResponsive' %></p>
+      </div>
+      <div class="wrapper"><p><span class="fa fa-phone"></span>
+        <%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 300px', class: ' inputResponsive' %></p>
+      </div>
       <div class="wrapper"><p><span class="fa fa-address-card"></span>
-        <%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 300px', class: ' inputResponsive' %></p>
+        <%= f.text_field :cpf, :required => true, placeholder: "CPF", style: 'width: 300px', class: ' inputResponsive', 'data-mask': '999.999.999-99' %></p>
       </div>
       <div class="wrapper"><p><span class="fa fa-birthday-cake"></span>
-        <%= f.text_field :birth_date, :required => true, placeholder: "Data de Nascimento", style: 'width: 300px', class: 'inputResponsive', value: @user.birth_date.present? ? @user.birth_date.strftime('%d/%m/%Y') : '' %></p>
+        <%= f.text_field :birth_date, :required => true, placeholder: "Data de Nascimento", style: 'width: 300px', class: 'inputResponsive', 'data-mask': '99/99/9999' %></p>
       </div>
       <div class="wrapper"><p><span class="fa fa-address-card"></span>
         <%= f.text_field :cep, :required => true, placeholder: "CEP", style: 'width: 300px', class: ' inputResponsive', 'data-mask': '99999-999' %></p>
@@ -59,12 +60,9 @@
                               ['Sergipe', 'SE'],
                               ['Tocantins', 'TO']], placeholder: "Estado", style: 'width: 300px', class: ' inputResponsive', required: true %>
       </div><br>
-      <div class="wrapper"><p><span class="fa fa-address-card"></span>
-        <%= f.text_field :phone, :required => true, placeholder: "Telefone", style: 'width: 300px', class: ' inputResponsive' %></p>
-      </div>
       <%= f.hidden_field :edit_type, value: 'user' %>
       <div class="wrapper"><p><span class="fa fa-photo"></span>
-        <%= f.file_field :avatar, :required => false, style: 'width: calc(100% - 40px); background-color: white; border-radius: 0px 3px 3px 0px;', class: ' inputResponsive', id: "files", accept:'image/*' %></p>
+        <%= f.file_field :avatar, :required => false, style: 'width: calc(100% - 40px); background-color: white; border-radius: 0px 3px 3px 0px;', class: 'inputResponsive', id: "files", accept:'image/*' %></p>
         <div class="image-box">
           <div id="result">
             <img src="" id="imagem"/>
