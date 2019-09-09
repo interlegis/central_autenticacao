@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   patch '/users' => 'users#update'
   get '/panel' => 'users#panel', as: 'panel_keys'
   put '/users' => 'users#update'
+  get '/users/completar' => 'users#complete_info', :as => 'complete_user_info'
+  get '/users/cep' => 'users#verifica_cep', :as => 'cep_search'
   get '/users/edit' => 'users#edit', :as => 'edit_user'
   get '/users/password' => 'users#edit_pw', :as => 'edit_password'
   post "oauth/callback" => "services_auth#callback"

@@ -31,4 +31,8 @@ class User < ApplicationRecord
     end
   end
 
+  def complete?
+    self.cpf.present? and self.birth_date.present? and self.cep.present? and self.address.present? and self.addr_number.present? and self.city.present? and self.state.present?
+  end
+
 end

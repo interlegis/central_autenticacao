@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
+  before_action :info_completed, only: [:show]
+  before_action :logged, except: [:new, :create, :verifica_cep]
+
   def show
-    if current_user
-      @user = current_user
-    else
-      redirect_to root_path
-    end
   end
   def new
     @user = User.new
@@ -50,13 +48,22 @@ class UsersController < ApplicationController
     end
   end
   def edit
-    @user = current_user
+    @editable = true
   end
   def edit_pw
-    @user = current_user
+  end
+  def complete_info
+    if params[:return].present?
+      session[:login_back_url] = params[:return]
+    end
+    if @user.complete?
+      redirect_to_return
+    else
+      @user = current_user
+      @editable = false
+    end
   end
   def update
-    @user = current_user
     if edit_user_params[:avatar]
       @user.skip_password = true
       if edit_user_params[:avatar].content_type == ['image/png', 'image/jpg', 'image/jpeg']
@@ -100,11 +107,21 @@ class UsersController < ApplicationController
       @api_keys = ApiAccess.all
     end
   end
+  def verifica_cep
+    response = HTTParty.get("https://viacep.com.br/ws/" + params[:cep] + "/json/", format: :plain)
+    response = JSON.parse response, symbolize_names: true
+    print(response)
+    if response.present? and !response[:erro]
+      render status: 200, json: response.to_json
+    else
+      render status: 400, json: response.to_json
+    end
+  end
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cpf, :birth_date, :cep, :state, :city, :address, :phone, :avatar)
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cpf, :birth_date, :cep, :state, :city, :address, :phone, :addr_number, :disabled, :avatar)
   end
   def edit_user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cpf, :birth_date, :cep, :state, :city, :address, :phone, :avatar)
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cep, :state, :city, :address, :addr_number, :phone, :disabled, :avatar)
   end
 end

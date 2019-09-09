@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_141526) do
+ActiveRecord::Schema.define(version: 2019_09_09_202632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(version: 2019_09_03_141526) do
     t.datetime "last_activity_at"
     t.string "last_login_from_ip_address"
     t.bigint "role_id"
+    t.boolean "disabled"
+    t.integer "addr_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
     t.index ["role_id"], name: "index_users_on_role_id"

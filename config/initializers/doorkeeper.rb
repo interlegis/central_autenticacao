@@ -4,11 +4,12 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    if current_user
+    if current_user&.complete?
       current_user
+    elsif !current_user.complete?
+      redirect_to complete_user_info_path(return: request.original_url)
     else
       redirect_to new_session_path(return: request.original_url)
-      nil
     end
   end
 
