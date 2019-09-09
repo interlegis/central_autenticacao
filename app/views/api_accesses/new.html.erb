@@ -1,9 +1,42 @@
+<style>
+  .newInputProp{
+    background: white;
+    height: 40px;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 14px !important;
+    line-height:40px !important;
+    -webkit-appearance: none;
+    font: inherit;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    padding-left: 15px !important;
+  }
+    .selectProperties{
+      height: 40px;
+      width: 97%;
+      background: white !important;
+      float: right;
+    }
+    #user_api_accesses_level_id{
+      width: 95%;
+      height: 40px;
+      background: white !important;
+      font-size: 14px ;
+      border-radius: 0px 3px 3px 0px;
+    }
+</style>
 <div class="main">
   <div class="container containerResp">
     <div class="titlePage" style="margin-bottom: 14px !important;">
       <label>CADASTRO DE USUÁRIO COM CHAVE</label>
     </div>
-    <center>
       <div class="middle">
         <div id="login" class="loginResponsive" style="border-right: 0px !important;">
           <%= form_with model: @user, url: api_accesses_path, method: :post, local: true do |f| %>
@@ -21,12 +54,16 @@
                 <div class="error">
                   <%= @user.errors[:email][1] if @user.errors.include?(:email) %>
                 </div>
-                <div class="wrapper"><p><span class="fa fa-at"></span>
-                  <%= f.text_field :ext_id, placeholder: 'Campo Adicional' %></p>
+                <div class="wrapper"><p><span class="fa fa-font"></span>
+                  <%= f.text_field :ext_id, placeholder: 'Campo Adicional', style: 'width: 300px', class: ' inputResponsive' %></p>
                 </div>
-                <div class="wrapper"><p><span class="fa fa-at"></span>
-                  <%= f.label :api_accesses_level_id, 'Nível de permissão de chave' %>
-                  <%= f.select :api_accesses_level_id, Array(1..4) %></p>
+                <div class="wrapper" style="margin-bottom: 15px;"><p><span class="fa fa-key"></span>
+                  <div style="height: 40px;">
+                    <%= f.label :api_accesses_level_id, 'Nível de permissão de chave', style: 'width: 250px', class: ' inputResponsive newInputProp' %>
+                    <div style="width: 50px; float: right; text-align: right">
+                      <%= f.select :api_accesses_level_id, Array(1..4), class: 'inputResponsive selectProperties' %></p>
+                    </div>
+                  </div>
                 </div>
                 <div class="ui-group-buttons" style="width: 100% !important;">
                   <a href="/" class="btn btn-danger" role="button" style="width: 49%;"><span class="glyphicon glyphicon-remove"></span>
