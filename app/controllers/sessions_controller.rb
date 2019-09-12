@@ -1,10 +1,21 @@
 class SessionsController < ApplicationController
   def new
+    callback_url = user_path
+    if params[:return].present?
+      callback_url = params[:return]
+      unless callback_url.include? 'http'
+        callback_url = 'https://' + callback_url
+      end
+      callback = URI.parse(callback_url)
+      unless callback.host.include? 'interlegis.leg.br'
+        callback_url = user_path
+      end
+    end
     if current_user
-      redirect_to user_path
+      redirect_to callback_url || user_path
     else
       @social = params[:social] #indica que o login deve ser feito por redes sociais
-      session[:login_back_url] = params[:return] || user_path
+      session[:login_back_url] = callback_url || user_path
       @erro = false
     end
   end
