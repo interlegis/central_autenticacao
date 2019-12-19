@@ -145,7 +145,7 @@ GEM
     pg (1.1.4)
     public_suffix (3.0.3)
     puma (3.12.1)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-cas (0.16.1)
       addressable (~> 2.3)
       nokogiri (~> 1.5)
