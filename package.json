@@ -7,7 +7,7 @@
     "@rails/webpacker": "^4.0.7",
     "bootstrap3": "^3.3.5",
     "channels": "^0.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-mask-plugin": "^1.14.16",
     "turbolinks": "^5.2.0"
   },
